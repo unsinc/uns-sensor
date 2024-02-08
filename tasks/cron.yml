@@ -1,0 +1,14 @@
+- name: install cron job (sensor-config)
+  cron:
+    user: ansible
+    name: "Sensor Provision"
+    minute: "*/10"
+    job: "/usr/bin/sensor-config -o -U https://github.com/unsinc/sensor.git 2>$1 | logger -t Sensor_Configuration"
+
+- name: install cron job (update-sensor)
+  cron:
+    user: ansible
+    name: "Update the Sensor"
+    day: "*/28"
+    hour: "*/23"
+    job: "/usr/bin/update-sensor -U https://github.com/unsinc/sensor/blob/2ef5d80dc2d95ff5f64cca321c10a89c3c634e02/tasks/update.yml 2>$1 | logger -t Sensor_Update"
