@@ -1,8 +1,8 @@
 - name: Initial Sensor Configuration
-    apt:
-      name:  
-        - auditd
-        - htop
-        - nano
-        - pstree
-        - net-tools
+  apt:
+    name:  
+      - auditd
+      - htop
+      - nano
+      - pstree
+      - net-tools
