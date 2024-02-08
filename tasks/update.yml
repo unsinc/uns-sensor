@@ -1,4 +1,4 @@
-tasks:
+- tasks:
   - name: Update apt-get repo and cache in the sensor
     apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
 
