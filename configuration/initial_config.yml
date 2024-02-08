@@ -6,3 +6,6 @@
       - nano
       - psmisc
       - net-tools
+
+- name: Upgrade all packages used by the sensor
+  apt: upgrade=dist force_apt_get=yes
