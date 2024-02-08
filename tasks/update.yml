@@ -1,19 +1,24 @@
 - name: Update apt-get repo and cache in the sensor
-  apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+  apt: 
+    update_cache: yes 
+    force_apt_get: yes
+    cache_valid_time: 86400
 
 - name: Upgrade all packages used by the sensor
-  apt: upgrade=dist force_apt_get=yes
+  apt: 
+    upgrade: dist
+    force_apt_get: yes
 
 - name: Check if a reboot is needed for the sensor
   register: reboot_required_file
-  stat: path=/var/run/reboot-required get_md5=no
+  stat: 
+    path: /var/run/reboot-required 
+    get_md5: no
 
-- name: Reboot the sensor
-  reboot:
-    msg: "Reboot initiated by Ansible due to kernel updates"
-    connect_timeout: 5
-    reboot_timeout: 300
-    pre_reboot_delay: 30
-    post_reboot_delay: 30
-    test_command: uptime
-  when: reboot_required_file.stat.exists
+- name: Reboot box if kernel/libs updated and requested by the system
+    shell: sleep 10 && /sbin/shutdown -r now 'Reboot initiated by Ansible to update system libs/kernel as needed' 
+    args:
+        removes: /var/run/reboot-required
+    async: 300
+    poll: 0
+    ignore_errors: true
