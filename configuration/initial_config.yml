@@ -9,3 +9,15 @@
 
 - name: Upgrade all packages used by the sensor
   apt: upgrade=dist force_apt_get=yes
+
+- name: Set all monitoring interfaces to optional
+  shell: "netplan set ethernets.enp3s0.optional=true"
+  shell: "netplan set ethernets.enp4s0f0.optional=true"
+  shell: "netplan set ethernets.enp4s0f1.optional=true"
+  shell: "netplan set ethernets.enp5s0.optional=true"
+  shell: "netplan set ethernets.enp6s0.optional=true"
+  shell: "netplan set ethernets.ens33.optional=true"
+  shell: "netplan set ethernets.ens34.optional=true"
+  shell: "netplan set ethernets.ens35.optional=true"
+  shell: "netplan set ethernets.ens36.optional=true"
+  shell: "netplan set ethernets.ens37.optional=true"
