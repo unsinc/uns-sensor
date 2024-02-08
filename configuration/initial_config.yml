@@ -4,5 +4,5 @@
       - auditd
       - htop
       - nano
-      - pstree
+      - psmisc
       - net-tools
