@@ -59,6 +59,9 @@
     src: ~/.ansible/pull/uns-sensor-01/configuration/docker-compose.yml
     dest: /Docker
 
+- name: Set the Ansible Python Directory
+  ansible_python_interpreter: /usr/local/lib/docker/virtualenv/bin/python
+
 - name: Install the IDS container
   community.docker.docker_compose:
     project_src: /Docker/docker-compose.yml
