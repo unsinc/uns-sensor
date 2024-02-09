@@ -66,4 +66,4 @@
 #    project_src: /Docker/docker-compose.yml
 
 - name: Install the IDS container with Docker Compose 
-  shell: docker compose config /Docker/docker-compose.yml up -d
+  shell: docker compose -f /Docker/docker-compose.yml up -d
