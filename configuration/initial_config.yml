@@ -25,7 +25,7 @@
 - name: Copy the docker-compose file to the Docker directory
   copy:
     src: ~/.ansible/pull/uns-sensor-01/configuration/docker-compose.yml
-    dst: /Docker
+    dest: /Docker
 
 - name: Install the IDS container
   community.docker.docker_compose:
