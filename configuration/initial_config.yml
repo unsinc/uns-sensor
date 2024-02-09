@@ -22,6 +22,11 @@
     netplan set ethernets.ens36.optional=true && \
     netplan set ethernets.ens37.optional=true"
 
+- name: Copy the docker-compose file to the Docker directory
+  copy:
+    src: ~/.ansible/pull/uns-sensor-01/configuration/docker-compose.yml
+    dst: /Docker
+
 - name: Install the IDS container
   community.docker.docker_compose:
     project_src: ~/.ansible/pull/uns-sensor-01/configuration/docker-compose.yml
