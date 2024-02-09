@@ -66,7 +66,7 @@
 #    project_src: /Docker/docker-compose.yml
 
 - name: Collect the highest 5 interface names on the sensor
-  shell: "ansible localhost -m setup -a "filter=ansible_interfaces" | sort | grep -e ens -e enp | tail -5 > /Docker/span_interfaces.txt"
+  shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 > /Docker/span_interfaces.txt"
   set_fact:
     span_interfaces: "{% for interface in span_interfaces.txt %} {{{interface}}}"
 - name: List
