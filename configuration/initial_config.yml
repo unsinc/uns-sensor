@@ -4,7 +4,7 @@
       - ca-certificates
       - gnupg
 
-name: Install the keyrings
+- name: Install the keyrings
   shell: "install -m 0755 -d /etc/apt/keyrings"
 
 - name: Add the needed keys
