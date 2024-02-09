@@ -7,18 +7,19 @@ services:
     user: root
     volumes:
       - '/Docker/volumes/IDS:/usr/share/ubuntu/state:rw'
-#    networks:
-#      - eth1_span
-#      - eth2_span
-#      - eth3_span
-#      - sfp+1_span
-#      - sfp+2_span
-#      - ens33_span
-#      - ens34_span
-#      - ens36_span
-#      - ens37_span
-#
-#      - ens35_span
+    networks:
+      - eth1_span
+      - eth2_span
+      - eth3_span
+      - sfp+1_span
+      - sfp+2_span
+      - ens33_span
+      - ens34_span
+      - ens35_span
+      - ens36_span
+      - ens37_span
+
+
 #networks:
 #  eth1_span:
 #  driver: macvlan
