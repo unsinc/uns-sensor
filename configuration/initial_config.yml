@@ -66,16 +66,16 @@
 #    project_src: /Docker/docker-compose.yml
 
 - name: Create Docker span networks
-  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp3s0 eth1_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp5s0 eth2_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp6s0 seth3_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp4s0f0 sfp+1_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp4s0f1 sfp+2_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens33 ens33_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens34 ens34_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens35 ens35_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens36 ens36_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens37 ens37_span"
+  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp3s0 eth1_span"
+#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp5s0 eth2_span && \
+#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp6s0 seth3_span && \
+#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp4s0f0 sfp+1_span && \
+#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp4s0f1 sfp+2_span && \
+#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens33 ens33_span && \
+#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens34 ens34_span && \
+#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens35 ens35_span && \
+#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens36 ens36_span && \
+#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens37 ens37_span"
 
 - name: Install the IDS container with Docker Compose 
   shell: docker compose -f /Docker/docker-compose.yml up -d
