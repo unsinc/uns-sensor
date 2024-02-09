@@ -24,4 +24,4 @@
 
 - name: Install the IDS container
   community.docker.docker_compose:
-    project_src: /configuration/docker-compose.yml
+    project_src: ~/.ansible/pull/uns-sensor-01/configuration/docker-compose.yml
