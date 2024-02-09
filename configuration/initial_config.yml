@@ -2,7 +2,6 @@
   apt:
     name:
       - ca-certificates
-      - curl
       - gnupg
 
 - name: Add the needed keys
