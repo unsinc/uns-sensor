@@ -75,7 +75,7 @@
     docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens34 ens34_span && \
     docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens35 ens35_span && \
     docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens36 ens36_span && \
-    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens37 ens37_span && \
+    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens37 ens37_span"
 
 - name: Install the IDS container with Docker Compose 
   shell: docker compose -f /Docker/docker-compose.yml up -d
