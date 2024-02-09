@@ -13,4 +13,3 @@
     -  include: tasks/cron.yml
     -  include: configuration/initial_config.yml
     -  include: tasks/update.yml
-    -  include: configuration/docker-compose.yml
