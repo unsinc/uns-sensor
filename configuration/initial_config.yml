@@ -65,8 +65,17 @@
 #      ansible_python_interpreter: /usr/bin/python3
 #    project_src: /Docker/docker-compose.yml
 
-- name: Create Docker span networks
-  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp3s0 eth1_span"
+- name: Collect the highest 5 interface names on the sensor
+  shell: "ansible localhost -m setup -a "filter=ansible_interfaces" | sort | grep -e ens -e enp | tail -5 > /Docker/span_interfaces.txt"
+  set_fact:
+    span_interfaces: "{% for interface in span_interfaces.txt %} {{{interface}}}"
+- name: List
+  debug:
+    msg: "{{span_interfaces}}"
+
+
+#- name: Create Docker span networks
+#  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp3s0 eth1_span"
 #    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp5s0 eth2_span && \
 #    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp6s0 seth3_span && \
 #    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp4s0f0 sfp+1_span && \
