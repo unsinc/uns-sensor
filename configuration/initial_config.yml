@@ -6,6 +6,7 @@
       - nano
       - psmisc
       - net-tools
+      - python-docker
 
 - name: Upgrade all packages used by the sensor
   apt: upgrade=dist force_apt_get=yes
