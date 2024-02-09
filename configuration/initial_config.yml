@@ -6,7 +6,7 @@
       - gnupg
 
 - name: Add the needed keys
-  get.url:  
+  get.url:
     url: https://download.docker.com/linux/ubuntu/gpg 
     dest: /etc/apt/keyrings/docker.gpg
 
