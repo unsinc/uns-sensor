@@ -10,7 +10,7 @@
 - name: Add the needed keys
   block:
     - name: dockerrepo | no apt key 
-      get.url:
+      get_url:
         url: https://download.docker.com/linux/ubuntu/gpg 
         dest: /etc/apt/keyrings/docker.gpg
 
