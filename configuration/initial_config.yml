@@ -65,5 +65,14 @@
 #      ansible_python_interpreter: /usr/bin/python3
 #    project_src: /Docker/docker-compose.yml
 
+- name: Create Docker span networks
+  docker_network:
+    name: eth1_span
+    driver: macvlan
+    driver_options:
+      macvlan_mode: passthru
+      parent: enp3s0
+    connected: IDS
+
 - name: Install the IDS container with Docker Compose 
   shell: docker compose -f /Docker/docker-compose.yml up -d
