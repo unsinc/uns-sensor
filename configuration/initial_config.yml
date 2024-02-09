@@ -68,13 +68,13 @@
 - name: Collect the highest 5 interface names on the sensor
   shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > ~/span_interfaces.txt"
   
-- name: Loop
-  set_fact:
-    span_interfaces: "{% for interface in span_interfaces.txt %} {{{interface}}}"
+#- name: Loop
+#  set_fact:
+#    span_interfaces: "{% for interface in span_interfaces.txt %} {{{interface}}}"
 
-- name: List
-  debug:
-    msg: "{{span_interfaces}}"
+#- name: List
+#  debug:
+#    msg: "{{span_interfaces}}"
 
 
 #- name: Create Docker span networks
