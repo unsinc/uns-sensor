@@ -32,6 +32,7 @@
       - nano
       - psmisc
       - net-tools
+      - python2-minimal
       - docker-ce
       - docker-ce-cli
       - containerd.io
