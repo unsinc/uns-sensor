@@ -7,84 +7,84 @@ services:
     user: root
     volumes:
       - '/Docker/volumes/IDS:/usr/share/ubuntu/state:rw'
-    networks:
-      - eth1_span
-      - eth2_span
-      - eth3_span
-      - sfp+1_span
-      - sfp+2_span
-      - ens33_span
-      - ens34_span
-      - ens35_span
-      - ens36_span
-      - ens37_span
-
-networks:
-  eth1_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: enp3s0
-
-networks:
-  eth2_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: enp5s0
-
-networks:
-  eth3_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: enp6s0
-
-networks:
-  sfp+1_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: enp4s0f0
-
-networks:
-  sfp+2_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: enp4s0f1
-
-networks:
-  ens33_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: ens33
-
-networks:
-  ens34_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: ens34
-
-networks:
-  ens35_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: ens35
-
-networks:
-  ens36_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: ens36
-
-networks:
-  ens37_span:
-  driver: macvlan
-  option: 
-    macvlan_mode: passthru
-    parent: ens37
+#    networks:
+#      - eth1_span
+#      - eth2_span
+#      - eth3_span
+#      - sfp+1_span
+#      - sfp+2_span
+#      - ens33_span
+#      - ens34_span
+#      - ens36_span
+#      - ens37_span
+#
+#      - ens35_span
+#networks:
+#  eth1_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: enp3s0
+#
+#networks:
+#  eth2_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: enp5s0
+#
+#networks:
+#  eth3_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: enp6s0
+#
+#networks:
+#  sfp+1_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: enp4s0f0
+#
+#networks:
+#  sfp+2_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: enp4s0f1
+#
+#networks:
+#  ens33_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: ens33
+#
+#networks:
+#  ens34_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: ens34
+#
+#networks:
+#  ens35_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: ens35
+#
+#networks:
+#  ens36_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: ens36
+#
+#networks:
+#  ens37_span:
+#  driver: macvlan
+#  option: 
+#    macvlan_mode: passthru
+#    parent: ens37
