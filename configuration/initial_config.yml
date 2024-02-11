@@ -12,10 +12,7 @@
     sudo chmod a+r /etc/apt/keyrings/docker.gpg"
 
 - name: Add Docker to the APT repository
-  shell: "add-apt-repository \
-   deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \ 
-   stable"
+  shell: "add-apt-repository -y deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
  
 - name: Update the APT repository
   apt:
