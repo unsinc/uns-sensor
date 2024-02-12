@@ -9,6 +9,17 @@
     update_cache: yes
   changed_when: False
 
+- name: Add Docker GPG apt Key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add repository into sources list
+  ansible.builtin.apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
+    state: present
+    filename: docker
+
 - name: Initial Sensor Configuration
   apt:
     name:  
@@ -17,6 +28,11 @@
       - nano
       - psmisc
       - net-tools
+      - Containerd.io
+      - Docker-buildx-plugin
+      - Docker-ce
+      - Docker-ce-cli
+      - Docker-compose-plugin
 
 - name: Upgrade all packages used by the sensor
   apt: upgrade=dist force_apt_get=yes
