@@ -26,6 +26,7 @@
 
 - name: Set all monitoring interfaces to optional
   shell: "netplan set ethernets.{{ item }}.optional=true"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
 
 - name: Copy the docker-compose file to the Docker directory
   copy:
