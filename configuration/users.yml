@@ -6,9 +6,7 @@
 - name: Setup docker user
   user:
     name: docker
-    groups: "docker"
-    append: true
-    sudo_user: yes
+    system: yes
 
 - name: copy sudoers_ansible
   copy:
