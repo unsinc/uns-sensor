@@ -4,15 +4,6 @@
       - ca-certificates
       - gnupg
 
-- name: Install the keyrings
-  shell: "install -m 0755 -d /etc/apt/keyrings"
-
-- name: Add the needed keys
-  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg && sudo chmod a+r /etc/apt/keyrings/docker.gpg"
-
-- name: Add Docker to the APT repository
-  shell: "add-apt-repository -y deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
- 
 - name: Update the APT repository
   apt:
     update_cache: yes
@@ -26,12 +17,6 @@
       - nano
       - psmisc
       - net-tools
-      - python2-minimal
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - docker-buildx-plugin
-      - docker-compose-plugin
 
 - name: Upgrade all packages used by the sensor
   apt: upgrade=dist force_apt_get=yes
@@ -60,8 +45,15 @@
 #    project_src: /Docker/docker-compose.yml
 
 - name: Collect the highest 5 interface names on the sensor
-  shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed -i 's/ //g';'s/\"//g';'s/,//g' > /home/uns/span_interfaces.txt"
+  shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
   
+- name: Create the needed network interfaces for the span ports
+  shell: "while IFS= read -r line; do docker network create -d macvlan -o macvlan_mode=passthru -o parent=$line $line"_span"; done < "span_interfaces.txt""
+
+- name: Create the needed span interfaces
+  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines()"
+
 #- name: Loop
 #  set_fact:
 #    span_interfaces: "{% for interface in span_interfaces.txt %} {{{interface}}}"
