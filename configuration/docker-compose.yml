@@ -3,7 +3,7 @@ services:
     hostname: IDS
     image: ubuntu:22.04
     container_name: IDS
-    restart: always
+    restart: unless-stopped
     user: root
-#    volumes:
-#      - '/Docker/volumes/IDS:/usr/share/ubuntu/state:rw'
+    volumes:
+      - '/Docker/volumes/IDS:/usr/share/ubuntu/state:rw'
