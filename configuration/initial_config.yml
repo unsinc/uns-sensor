@@ -28,11 +28,11 @@
       - nano
       - psmisc
       - net-tools
-      - Containerd.io
-      - Docker-buildx-plugin
-      - Docker-ce
-      - Docker-ce-cli
-      - Docker-compose-plugin
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-ce
+      - docker-ce-cli
+      - docker-compose-plugin
 
 - name: Upgrade all packages used by the sensor
   apt: upgrade=dist force_apt_get=yes
