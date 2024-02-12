@@ -47,8 +47,8 @@
 - name: Collect the highest 5 interface names on the sensor
   shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
   
-- name: Create the needed network interfaces for the span ports
-  shell: "while IFS= read -r line; do docker network create -d macvlan -o macvlan_mode=passthru -o parent=$line $line"_span"; done < "span_interfaces.txt""
+#- name: Create the needed network interfaces for the span ports
+#  shell: "while IFS= read -r line; do docker network create -d macvlan -o macvlan_mode=passthru -o parent=$line $line"_span"; done < "span_interfaces.txt""
 
 - name: Create the needed span interfaces
   shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
