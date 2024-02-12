@@ -3,6 +3,13 @@
     name: ansible
     system: yes
 
+- name: Setup docker user
+  user:
+    name: docker
+    groups: "docker"
+    append: true
+    sudo_user: yes
+
 - name: copy sudoers_ansible
   copy:
     src: configuration/sudoers_ansible

@@ -33,13 +33,32 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
+      - apt-transport-https
+      - software-properties-common
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+      - gnupg-agent
+      - autoconf
+      - dpkg-dev
+      - file
+      - g++
+      - gcc
+      - libc-dev
+      - make
+      - pkg-config
+      - re2c
+      - wget
+
+- name: Install Docker module for Python
+  pip:
+    name: docker 
 
 - name: Upgrade all packages used by the sensor
   apt: upgrade=dist force_apt_get=yes
 
 - name: Collect the highest 5 interface names on the sensor
   shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
-
 
 - name: Set all monitoring interfaces to optional
   shell: "netplan set ethernets.{{ item }}.optional=true"
