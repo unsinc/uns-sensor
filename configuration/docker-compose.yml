@@ -5,5 +5,5 @@ services:
     container_name: IDS
     restart: always
     user: root
-    volumes:
-      - '/Docker/volumes/IDS:/usr/share/ubuntu/state:rw'
+#    volumes:
+#      - '/Docker/volumes/IDS:/usr/share/ubuntu/state:rw'
