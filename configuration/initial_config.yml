@@ -21,59 +21,24 @@
 - name: Upgrade all packages used by the sensor
   apt: upgrade=dist force_apt_get=yes
 
+- name: Collect the highest 5 interface names on the sensor
+  shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
+
 - name: Set all monitoring interfaces to optional
-  shell: "netplan set ethernets.enp3s0.optional=true && \
-    netplan set ethernets.enp4s0f0.optional=true && \
-    netplan set ethernets.enp4s0f1.optional=true && \
-    netplan set ethernets.enp5s0.optional=true && \
-    netplan set ethernets.enp6s0.optional=true && \
-    netplan set ethernets.ens33.optional=true && \
-    netplan set ethernets.ens34.optional=true && \
-    netplan set ethernets.ens35.optional=true && \
-    netplan set ethernets.ens36.optional=true && \
-    netplan set ethernets.ens37.optional=true"
+  shell: "netplan set ethernets.{{ item }}.optional=true"
 
 - name: Copy the docker-compose file to the Docker directory
   copy:
     src: ~/.ansible/pull/uns-sensor-01/configuration/docker-compose.yml
     dest: /Docker
 
-#- name: Install the IDS container
-#  community.docker.docker_compose:
-#    vars:
-#      ansible_python_interpreter: /usr/bin/python3
-#    project_src: /Docker/docker-compose.yml
-
-- name: Collect the highest 5 interface names on the sensor
-  shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
-  
-#- name: Create the needed network interfaces for the span ports
-#  shell: "while IFS= read -r line; do docker network create -d macvlan -o macvlan_mode=passthru -o parent=$line $line"_span"; done < "span_interfaces.txt""
-
 - name: Create the needed span interfaces
   shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
 
-#- name: Loop
-#  set_fact:
-#    span_interfaces: "{% for interface in span_interfaces.txt %} {{{interface}}}"
-
-#- name: List
-#  debug:
-#    msg: "{{span_interfaces}}"
-
-
-#- name: Create Docker span networks
-#  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp3s0 eth1_span"
-#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp5s0 eth2_span && \
-#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp6s0 seth3_span && \
-#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp4s0f0 sfp+1_span && \
-#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=enp4s0f1 sfp+2_span && \
-#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens33 ens33_span && \
-#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens34 ens34_span && \
-#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens35 ens35_span && \
-#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens36 ens36_span && \
-#    docker network create -d macvlan -o macvlan_mode=passthru -o parent=ens37 ens37_span"
+- name: Attach the new SPAN interfaces to the IDS
+  shell: "docker network connect {{ item }}_span IDS"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
 
 - name: Install the IDS container with Docker Compose 
   shell: docker compose -f /Docker/docker-compose.yml up -d
