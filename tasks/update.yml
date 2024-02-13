@@ -8,7 +8,7 @@
     upgrade: 'dist'
     update_cache: yes
     force_apt_get: yes
-    default_release: "{{ ansible_distrubution_release }}"
+    default_release: "{{ ansible_distribution_release }}"
 
 - name: Check if a reboot is needed for the sensor
   register: reboot_required_file
