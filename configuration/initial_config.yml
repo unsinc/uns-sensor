@@ -64,6 +64,12 @@
   shell: "netplan set ethernets.{{ item }}.optional=true"
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
 
+- name: Create the Docker Directory if it does not exist
+  file:
+    path: /Docker 
+    state: directory
+    mode: '0755'
+
 - name: Copy the docker-compose file to the Docker directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/docker-compose.yml
