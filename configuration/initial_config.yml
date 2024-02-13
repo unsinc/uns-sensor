@@ -33,30 +33,30 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
-      - apt-transport-https
-      - software-properties-common
-      - python3-pip
-      - virtualenv
-      - python3-setuptools
-      - gnupg-agent
-      - autoconf
-      - dpkg-dev
-      - file
-      - g++
-      - gcc
-      - libc-dev
-      - make
-      - pkg-config
-      - re2c
-      - wget
+#      - apt-transport-https
+#      - software-properties-common
+#      - python3-pip
+#      - virtualenv
+#      - python3-setuptools
+#      - gnupg-agent
+#      - autoconf
+#      - dpkg-dev
+#      - file
+#      - g++
+#      - gcc
+#      - libc-dev
+#      - make
+#      - pkg-config
+#      - re2c
+#      - wget
 
-- name: Install Docker module for Python
-  pip:
-    name: docker
+#- name: Install Docker module for Python
+#  pip:
+#    name: docker
 
-- name: Install Docker Compose module for Python
-  pip:
-    name: docker-compose
+#- name: Install Docker Compose module for Python
+#  pip:
+#    name: docker_compose
 
 - name: Upgrade all packages used by the sensor
   apt: upgrade=dist force_apt_get=yes
