@@ -6,7 +6,7 @@
 
 - name: Upgrade all packages used by the sensor
   apt: 
-    upgrade: dist
+    upgrade: 'dist'
     update_cache: yes
     force_apt_get: yes
     default_release: "{{ ansible_distrubution_release }}"
