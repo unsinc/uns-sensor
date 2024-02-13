@@ -90,7 +90,7 @@
 
 - name: Create and start IDS
   community.docker.docker_compose:
-    project_src: ./Docker/
+    project_src: /Docker/
     files:
     - docker-compose.yml
   register: output
