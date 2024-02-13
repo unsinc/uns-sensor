@@ -72,13 +72,15 @@
   file:
     path: /Docker 
     state: directory
-    mode: '0755'
+    user: docker
+    group: docker
 
 - name: Copy the docker-compose file to the Docker directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/docker-compose.yml
     dest: /Docker/docker-compose.yml
-    mode: '0755'
+    user: docker
+    group: docker
 
 #- name: Create the needed span interfaces
 #  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
