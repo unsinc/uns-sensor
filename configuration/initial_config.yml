@@ -66,7 +66,7 @@
 
 - name: Copy the docker-compose file to the Docker directory
   copy:
-    src: ~/.ansible/pull/uns-sensor-01/configuration/docker-compose.yml
+    src: ~/.ansible/pull/{{inventory_hostname}}/configuration/docker-compose.yml
     dest: /Docker
 
 - name: Chnage docker-copose permissions
