@@ -89,7 +89,7 @@
 #  shell: "docker compose -f /Docker/docker-compose.yml up -d"
 
 - name: Create and start IDS
-  community.docker.docker_compose:
+  community.docker.docker compose:
     project_src: /Docker/
     files:
     - docker-compose.yml
