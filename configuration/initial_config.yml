@@ -73,7 +73,8 @@
 - name: Copy the docker-compose file to the Docker directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/docker-compose.yml
-    dest: /Docker
+    dest: /Docker/docker-compose.yml
+    state: file
     mode: '0755'
 
 - name: Create the needed span interfaces
