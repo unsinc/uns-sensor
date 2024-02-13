@@ -52,7 +52,11 @@
 
 - name: Install Docker module for Python
   pip:
-    name: docker 
+    name: docker
+
+- name: Install Docker Compose module for Python
+  pip:
+    name: docker-compose
 
 - name: Upgrade all packages used by the sensor
   apt: upgrade=dist force_apt_get=yes
