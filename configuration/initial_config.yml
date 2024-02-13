@@ -33,26 +33,26 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
-      - apt-transport-https
-      - software-properties-common
-      - python3-pip
-      - virtualenv
-      - python3-setuptools
-      - gnupg-agent
-      - autoconf
-      - dpkg-dev
-      - file
-      - g++
-      - gcc
-      - libc-dev
-      - make
-      - pkg-config
-      - re2c
-      - wget
+#      - apt-transport-https
+#      - software-properties-common
+#      - python3-pip
+#      - virtualenv
+#      - python3-setuptools
+#      - gnupg-agent
+#      - autoconf
+#      - dpkg-dev
+#      - file
+#      - g++
+#      - gcc
+#      - libc-dev
+#      - make
+#      - pkg-config
+#      - re2c
+#      - wget
 
-- name: Install Docker module for Python
-  pip:
-    name: docker
+#- name: Install Docker module for Python
+#  pip:
+#    name: docker
 
 #- name: Install Docker Compose module for Python
 #  pip:
@@ -85,15 +85,15 @@
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
   ignore_errors: true
 
-#- name: Install the IDS container with Docker Compose 
-#  shell: "docker compose -f /Docker/docker-compose.yml up -d"
+- name: Install the IDS container with Docker Compose 
+  shell: "docker compose -f /Docker/docker-compose.yml up -d"
 
-- name: Create and start IDS
-  community.docker.docker compose:
-    project_src: /Docker/
-    files:
-    - docker-compose.yml
-  register: output
+#- name: Create and start IDS
+#  community.docker.docker compose:
+#    project_src: /Docker/
+#    files:
+#    - docker-compose.yml
+#  register: output
 
 - name: Attach the new SPAN interfaces to the IDS
   shell: "docker network connect {{ item }}_span IDS"
