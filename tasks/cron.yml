@@ -10,5 +10,5 @@
     user: ansible
     name: "Update the Sensor"
     day: "*/28"
-    hour: "*/23"
+    hour: "*/07"
     job: "/usr/bin/ansible-pull -U https://github.com/unsinc/sensor/blob/2ef5d80dc2d95ff5f64cca321c10a89c3c634e02/tasks/update.yml 2>&1 | logger -t Sensor_Update"
