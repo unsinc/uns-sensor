@@ -95,6 +95,6 @@
 #    - docker-compose.yml
 #  register: output
 
-- name: Attach the new SPAN interfaces to the IDS
-  shell: "docker network connect {{ item }}_span IDS"
-  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+#- name: Attach the new SPAN interfaces to the IDS
+#  shell: "docker network connect {{ item }}_span IDS"
+#  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
