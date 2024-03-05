@@ -80,8 +80,6 @@
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/docker-compose.yml
     dest: /Docker/docker-compose.yml
-    owner: docker
-    group: docker
 
 - name: Create the needed span interfaces
   shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
@@ -90,10 +88,6 @@
 
 - name: Install the IDS container with Docker Compose 
   shell: "docker compose -f /Docker/docker-compose.yml up -d"
-
-- name: Sleep for a few seconds while the container is created
-  wait_for:
-    timeout: 30
 
 #- name: Create and start IDS
 #  community.docker.docker compose:

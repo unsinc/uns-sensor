@@ -1,7 +1,7 @@
 services:
   IDS:
     hostname: IDS
-    image: ubuntu:22.04
+    image: ubuntu
     container_name: IDS
     restart: always
     user: root
