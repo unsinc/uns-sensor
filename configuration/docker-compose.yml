@@ -1,4 +1,6 @@
 services:
   myubuntu:
+    hostname: IDS
     image: ubuntu:22.04
+    container_name: IDS
     tty: true
