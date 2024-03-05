@@ -1,14 +1,6 @@
 - name: install cron job (ansible-pull)
   cron:
     user: ansible
-    name: "Sensor Provision"
+    name: "Sensor Configuration"
     minute: "*/10"
     job: "/usr/bin/ansible-pull -o -U https://github.com/unsinc/sensor.git 2>&1 | logger -t Sensor_Configuration"
-
-- name: install cron job (ansible-pull)
-  cron:
-    user: ansible
-    name: "Update the Sensor"
-    day: "*/28"
-    hour: "*/07"
-    job: "/usr/bin/ansible-pull -U https://github.com/unsinc/sensor/blob/2ef5d80dc2d95ff5f64cca321c10a89c3c634e02/tasks/update.yml 2>&1 | logger -t Sensor_Update"

@@ -7,6 +7,7 @@
 - name: Update the APT repository
   apt:
     update_cache: yes
+    force_apt_get: yes
   changed_when: False
 
 - name: Add Docker GPG apt Key
@@ -64,9 +65,9 @@
 - name: Collect the highest 5 interface names on the sensor
   shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
 
-#- name: Set all monitoring interfaces to optional
-#  shell: "netplan set ethernets.{{ item }}.optional=true"
-#  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+- name: Set all monitoring interfaces to optional
+  shell: "netplan set ethernets.{{ item }}.optional=true"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
 
 - name: Create Docker directory if it does not exist
   file:
@@ -82,21 +83,21 @@
     owner: docker
     group: docker
 
-#- name: Create the needed span interfaces
-#  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
-#  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
-#  ignore_errors: true
+- name: Create the needed span interfaces
+  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+  ignore_errors: true
 
 - name: Install the IDS container with Docker Compose 
   shell: "docker compose -f /Docker/docker-compose.yml up -d"
 
-#- name: Create and start IDS
-#  community.docker.docker compose:
-#    project_src: /Docker/
-#    files:
-#    - docker-compose.yml
-#  register: output
+- name: Create and start IDS
+  community.docker.docker compose:
+    project_src: /Docker/
+    files:
+    - docker-compose.yml
+  register: output
 
-#- name: Attach the new SPAN interfaces to the IDS
-#  shell: "docker network connect {{ item }}_span IDS"
-#  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+- name: Attach the new SPAN interfaces to the IDS
+  shell: "docker network connect {{ item }}_span IDS"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
