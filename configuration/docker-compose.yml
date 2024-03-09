@@ -1,8 +1,8 @@
 services:
   myubuntu:
-    hostname: IDS
+    hostname: ubuntu
     image: ubuntu:22.04
-    container_name: IDS
+    container_name: test
     restart: unless-stopped
     #volumes:
      # - /var/log/suricata:/var/log/suricata
