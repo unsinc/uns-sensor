@@ -3,7 +3,7 @@ services:
     hostname: IDS
     image: ubuntu:22.04
     container_name: IDS
-    restart: always
+    restart: unless-stopped
     #volumes:
      # - /var/log/suricata:/var/log/suricata
      # - '/Docker/IDS/suricata/eth1:/var/lib/suricata/eth1'
