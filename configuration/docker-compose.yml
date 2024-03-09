@@ -14,5 +14,5 @@ services:
 
 volumes:
   suricata-log:
-    external:
+    external: true
       name: /var/log/suricata/
