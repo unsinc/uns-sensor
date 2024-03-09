@@ -4,10 +4,3 @@ services:
     image: ubuntu:22.04
     container_name: test
     restart: unless-stopped
-    #volumes:
-     # - /var/log/suricata:/var/log/suricata
-     # - '/Docker/IDS/suricata/eth1:/var/lib/suricata/eth1'
-     # - '/Docker/IDS/suricata/eth2:/var/lib/suricata/eth2'
-     # - '/Docker/IDS/suricata/eth3:/var/lib/suricata/eth3'
-     # - '/Docker/IDS/suricata/eth4:/var/lib/suricata/eth4'
-     # - '/Docker/IDS/suricata/eth5:/var/lib/suricata/eth5'
