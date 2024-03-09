@@ -4,8 +4,8 @@ services:
     image: ubuntu:22.04
     container_name: IDS
     restart: always
-    volumes:
-      - /var/log/suricata:/var/log/suricata
+    #volumes:
+     # - /var/log/suricata:/var/log/suricata
      # - '/Docker/IDS/suricata/eth1:/var/lib/suricata/eth1'
      # - '/Docker/IDS/suricata/eth2:/var/lib/suricata/eth2'
      # - '/Docker/IDS/suricata/eth3:/var/lib/suricata/eth3'
