@@ -13,7 +13,6 @@
   register: reboot_required_file
   stat: 
     path: /var/run/reboot-required 
-    get_md5: false
   
 - name: Reboot box if kernel/libs updated and requested by the system
   shell: "sleep 10 && /sbin/shutdown -r 08:00 'Reboot initiated by Ansible to update system libs/kernel as needed'"
