@@ -1,5 +1,11 @@
 services:
   IDS:
+    image: suricata
     hostname: IDS
-    container_name: suricata
+    container_name: IDS
+    build:
+      context: ./suricata
+      dockerfile: /Docker/dockerfile
     restart: unless-stopped
+    volumes:
+      - /var/log/suricata:/var/log/suricata
