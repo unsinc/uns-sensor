@@ -45,7 +45,7 @@
 - name: format the xfs filesystem
   filesystem:
     fstype: xfs
-    dev: /dev/mapper/ids-lv
+    dev: /dev/mapper/IDS
 
 - name: mount the lv on /IDS
   mount:
