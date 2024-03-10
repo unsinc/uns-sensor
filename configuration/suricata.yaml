@@ -1826,7 +1826,7 @@ profiling:
     limit: 10
 
     # output to json
-    json: @e_enable_evelog@
+    #json: @e_enable_evelog@
 
   # per keyword profiling
   keywords:
