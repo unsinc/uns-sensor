@@ -6,6 +6,12 @@ services:
     build:
       context: /Docker
       dockerfile: dockerfile
-    restart: unless-stopped
+    restart: always
     volumes:
       - /var/log/suricata:/var/log/suricata
+      - /Docker/IDS/suricata/suricata.yaml:/etc/suricata/suricata.yaml
+      - /Docker/IDS/suricata/eth1:/etc/suricata/eth1
+      - /Docker/IDS/suricata/eth2:/etc/suricata/eth2
+      - /Docker/IDS/suricata/eth3:/etc/suricata/eth3
+      - /Docker/IDS/suricata/eth4:/etc/suricata/eth4
+      - /Docker/IDS/suricata/eth5:/etc/suricata/eth5
