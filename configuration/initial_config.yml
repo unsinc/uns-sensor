@@ -51,9 +51,8 @@
 #      - re2c
 #      - wget
 
-#- name: Install Docker module for Python
-#  pip:
-#    name: docker
+- name: Install Docker module for Python
+  shell: "pip install --upgrade suricata-update"
 
 #- name: Install Docker Compose module for Python
 #  pip:
@@ -95,7 +94,7 @@
     owner: docker
     group: docker
 
-- name: Create Suricata eth1 Rules directory if it does not exist
+- name: Create Suricata eth1 directory if it does not exist
   file:
     path: /Docker/IDS/suricata/eth1/rules 
     state: directory
@@ -179,6 +178,16 @@
   shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
   ignore_errors: true
+
+- name: Get the initial set of Suricata Rules
+  shell: "suicata-update"
+
+- name: Copy the rules to the interface directories
+  shell: "cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth1/rules/ && /
+          cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth2/rules/ && /
+          cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth3/rules/ && /
+          cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth4/rules/ && /
+          cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth5/rules/"
 
 - name: Run the docker container
   shell: 
