@@ -199,12 +199,17 @@
 - name: Get the initial set of Suricata Rules
   shell: "suricata-update"
 
-- name: Copy the rules to the interface directories
-  shell: "sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth1/rules/ && /
-          sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth2/rules/ && /
-          sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth3/rules/ && /
-          sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth4/rules/ && /
-          sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth5/rules/"
+- name: Copy the Suricata Rules file to the Suricata eth1 Rules directory
+  copy:
+    src: /var/lib/suricata/rules/
+    dest: /Docker/IDS/suricata/eth1/rules/
+
+#- name: Copy the rules to the interface directories
+#  shell: "sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth1/rules/ && /
+#          sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth2/rules/ && /
+#          sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth3/rules/ && /
+#          sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth4/rules/ && /
+#          sudo cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth5/rules/"
 
 - name: Run the docker container
   shell: 
