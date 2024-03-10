@@ -2164,17 +2164,17 @@ napatech:
 ## Configure Suricata to load Suricata-Update managed rules.
 ##
 
- default-rule-path: /var/lib/suricata/rules/
+default-rule-path: /var/lib/suricata/rules/
 
- rule-files:
-  - suricata.rules
+rule-files:
+- suricata.rules
 
 ##
 ## Auxiliary configuration files.
 ##
 
- classification-file: /etc/suricata/classification.config
- reference-config-file: /etc/suricata/reference.config
+classification-file: /etc/suricata/classification.config
+reference-config-file: /etc/suricata/reference.config
 # threshold-file: @e_sysconfdir@threshold.config
 
 ##
