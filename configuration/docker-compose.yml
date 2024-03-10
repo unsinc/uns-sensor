@@ -4,7 +4,7 @@ services:
     hostname: IDS
     container_name: IDS
     build:
-      context: ./Docker
+      context: /Docker
       dockerfile: dockerfile
     restart: unless-stopped
     volumes:
