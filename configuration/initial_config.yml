@@ -130,6 +130,15 @@
     owner: docker
     group: docker
 
+name: current_working_directory
+    shell: pwd
+    register: current_working_directory
+
+- name: Copy the Suricata Configuration file to the Suricata directory
+  copy:
+    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/dockerfile
+    dest: {{ current_working_directory.sydout }}
+
 - name: Copy the Suricata Configuration file to the Suricata directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/suricata.yaml
@@ -216,18 +225,8 @@
   ignore_errors: true
 
 - name: Install the IDS container with Docker Compose 
-  shell: "docker compose -f /Docker/docker-compose.yml up -d"
+  shell: "docker build -t ids ."
 
 - name: Attach the new SPAN interfaces to the IDS
   shell: "docker network connect {{ item }}_span IDS"
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
-
-- name: Update the APT repositories in IDS
-  shell: 
-    cmd: |
-        docker exec IDS /bin/bash -c "apt-get update"
-
-- name: Install Suricata in IDS
-  shell: 
-    cmd: |
-        docker exec IDS /bin/bash -c "apt-get install suricata"
