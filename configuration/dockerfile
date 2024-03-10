@@ -9,6 +9,9 @@ MAINTAINER unsinc
 # Update the repos
 RUN apt update
 
+# Allows us to add repositories
+RUN apt install -y software-properties-common wget apt-transport-https
+
 # Add the Suricata repository
 RUN add-apt-repository -y ppa:oisf/suricata-stable
 
