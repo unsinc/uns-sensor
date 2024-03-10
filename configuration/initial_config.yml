@@ -36,10 +36,23 @@
       - docker-compose-plugin
       - python3-pip
 
-- name: Debug
-  debug:
-    msg: "No dev/mapper/ubuntu--vg-ubuntu--lv"
-  when: ansible_devices.ubuntu--vg-ubuntu--lv is not defined
+- name: Create directory IDS if does not exist
+    file:
+      path: /IDS
+      state: directory
+      mode: '0755'
+
+- name: format the xfs filesystem
+  filesystem:
+    fstype: xfs
+    dev: /dev/mapper/ids-lv
+
+- name: mount the lv on /IDS
+  mount:
+    path: /IDS
+    src: /dev/mapper/IDS
+    fstype: xfs
+    state: mounted
 
 - name: Install Docker module for Python
   shell: "pip install --upgrade suricata-update"
