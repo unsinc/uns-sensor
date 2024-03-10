@@ -8,6 +8,11 @@
     name: docker
     system: yes
 
+- name: Setup suricata user
+  user:
+    name: suricata
+    system: yes
+
 - name: copy sudoers_ansible
   copy:
     src: configuration/sudoers_ansible
