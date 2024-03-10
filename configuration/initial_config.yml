@@ -45,12 +45,12 @@
 - name: format the xfs filesystem
   filesystem:
     fstype: xfs
-    dev: /dev/mapper/IDS
+    dev: /IDS
 
 - name: mount the lv on /IDS
   mount:
     path: /IDS
-    src: /dev/mapper/IDS
+    src: /IDS
     fstype: xfs
     state: mounted
 
