@@ -130,9 +130,10 @@
     owner: docker
     group: docker
 
-- name: Copy the Suricata Configuration file to the Suricata directory
+- name: Copy the Dockerfile
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/dockerfile
+    dest: 
 
 - name: Copy the Suricata Configuration file to the Suricata directory
   copy:
