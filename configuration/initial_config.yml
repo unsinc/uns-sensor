@@ -179,12 +179,16 @@
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
   ignore_errors: true
 
-- name: Adding ansible to the suricata group
+- name: Adding ansible to the Suricata group
   shell: "sudo usermod -a -G suricata ansible"
 
-- name: Change the Suricata Rules directory permissions
-  shell: "chmod -R g+rw /var/lib/suricata/rules && /
-          chmod -R g+rw /var/lib/suricata/update"
+- name: Chaneg the Groups of the Suricata directories
+  shell:  "sudo chgrp -R suricata /var/lib/suricata/rules && /
+           sudo chgrp -R suricata /var/lib/suricata/update"
+
+- name: Change the permissions of the Suricata directories
+  shell: "sudo chmod -R g+rw /var/lib/suricata/rules && /
+          sudo chmod -R g+rw /var/lib/suricata/update"
 
 - name: Get the initial set of Suricata Rules
   shell: "suricata-update"
