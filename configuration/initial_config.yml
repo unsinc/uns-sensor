@@ -42,8 +42,6 @@ tasks:
     msg: "No ubuntu--vg-ubuntu--l"
   when: ansible_devices.xvdf.partitions.ubuntu--vg-ubuntu--lv is not defined
 
-- name: 
-
 - name: Install Docker module for Python
   shell: "pip install --upgrade suricata-update"
 
