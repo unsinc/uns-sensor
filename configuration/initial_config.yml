@@ -130,14 +130,9 @@
     owner: docker
     group: docker
 
-- name: Current Working Directory
-  shell: "pwd"
-  register: current_working_directory
-
 - name: Copy the Suricata Configuration file to the Suricata directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/dockerfile
-    dest: {{ current_working_directory.sydout }}
 
 - name: Copy the Suricata Configuration file to the Suricata directory
   copy:
