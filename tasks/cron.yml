@@ -52,4 +52,4 @@
     user: docker
     name: "Suricata Rules Application"
     hour: "*/13"
-    job: "docker exec IDS /bin/sh -c "suricatasc -c ruleset-reload-nonblocking" | logger -t Updating the eth5 Rules"
+    job: "docker exec IDS /bin/sh -c suricatasc -c ruleset-reload-nonblocking | logger -t Updating the eth5 Rules"
