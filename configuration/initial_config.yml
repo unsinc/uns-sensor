@@ -41,9 +41,6 @@
     msg: "No dev/mapper/ubuntu--vg-ubuntu--lv"
   when: ansible_devices.dev.mapper.ubuntu--vg-ubuntu--lv is not defined
 
-
-/dev/mapper/ubuntu--vg-ubuntu--lv
-
 - name: Install Docker module for Python
   shell: "pip install --upgrade suricata-update"
 
