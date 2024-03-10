@@ -36,15 +36,13 @@
       - docker-compose-plugin
       - python3-pip
 
-- name: list all mounted device
-  shell: /bin/echo {{ item.device }} >> /root/mounted
-  with_items: "{{ ansible_mounts }}"
-  register: mounted_device
+- name: Debug
+  debug:
+    msg: "No dev/mapper/ubuntu--vg-ubuntu--lv"
+  when: ansible_devices.dev/mapper/ubuntu--vg-ubuntu--lv is not defined
 
-- name: list all umount disks
-  shell: /bin/echo {{ item }}
-  with_items: "{{ ansible_devices.keys() }}"
-  when: '{{ item }} not in {{ mounted_device }} '
+
+/dev/mapper/ubuntu--vg-ubuntu--lv
 
 - name: Install Docker module for Python
   shell: "pip install --upgrade suricata-update"
