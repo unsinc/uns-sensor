@@ -82,7 +82,7 @@
     owner: root
     group: suricata
 
-# Uncomment the section below for Multi-Tenency
+# Uncomment the section below for IDS Multi-Tenency
 #- name: Create Suricata eth1 directory if it does not exist
 #  file:
 #    path: /Docker/IDS/suricata/eth1/rules 
@@ -135,7 +135,7 @@
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/suricata.yaml
     dest: /Docker/IDS/suricata/suricata.yaml 
 
-# Uncomment the section below for Multi-Tenency
+# Uncomment the section below for IDS Multi-Tenency
 #- name: Copy the Suricata eth1 Configuration file to the Suricata directory
 #  copy:
 #    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/eth1.yaml
@@ -164,9 +164,9 @@
 - name: Copy the Suricata Classification file to the Suricata directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/classification.config
-# Comment the line below in Multi-Tenency
+# Comment the line below in IDS Multi-Tenency
     dest: "/Docker/IDS/suricata/classification.config"
-# Uncomment the section below for Multi-Tenency
+# Uncomment the section below for IDS Multi-Tenency
 #    dest: "/Docker/IDS/suricata/{{ item }}/classification.config"
 #  with_items:
 #      - eth1
@@ -178,9 +178,9 @@
 - name: Copy the Suricata Reference file to the Suricata directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/reference.config
-# Comment the line below in Multi-Tenency
+# Comment the line below in IDS Multi-Tenency
     dest: "/Docker/IDS/suricata/reference.config"
-# Uncomment the section below for Multi-Tenency
+# Uncomment the section below for IDS Multi-Tenency
 #    dest: "/Docker/IDS/suricata/{{ item }}/reference.config"
 #  with_items:
 #      - eth1
@@ -203,7 +203,9 @@
 - name: Copy the Suricata Rules file to the Suricata eth1 Rules directory
   copy:
     src: /var/lib/suricata/rules/
+# Comment the line below in IDS Multi-Tenency
     dest: "/Docker/IDS/suricata/rules/"
+# Uncomment the section below for IDS Multi-Tenency
 #    dest: "/Docker/IDS/suricata/{{ item }}/rules/"
 #  with_items:
 #      - eth1
