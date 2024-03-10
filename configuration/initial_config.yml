@@ -51,12 +51,12 @@
 - name: Create xfs filesystem on vg0-home
   community.general.filesystem:
     fstype: ext4
-    dev: /dev/mapper/ubuntu-vg-test
+    dev: /dev/mapper/ubuntu--vg-test
 
 - name: Mount home volume
   ansible.posix.mount:
     path: /test
-    src: /dev/mapper/ubuntu-vg-test
+    src: /dev/mapper/ubuntu--vg-test
     fstype: ext4
     state: present
 
