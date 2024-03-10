@@ -2198,7 +2198,7 @@ multi-detect:
     yaml: /etc/suricata/eth2/eth2.yaml
 
   mappings:
-  - device: eth1
+  - device-id: eth1
     tenant-id: 1
-  - device: eth2
+  - device-id: eth2
     tenant-id: 2
