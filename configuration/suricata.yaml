@@ -2204,7 +2204,7 @@ multi-detect:
        yaml: /etc/suricata/eth5/eth5.yaml  
   
   mappings:
-    - vlan: 1
+    - vlan-id: 1000
       tenant-id: 1
     - device: eth2
       tenant-id: 2
