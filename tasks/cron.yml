@@ -2,28 +2,30 @@
   cron:
     user: ansible
     name: "Sensor Configuration"
-    minute: "*/10"
+    minute: "10"
     job: "/usr/bin/ansible-pull -o -U https://github.com/unsinc/sensor.git 2>&1 | logger -t Sensor_Configuration"
 
 - name: update the suricata rules
   cron:
     user: docker
     name: "Suricata Rule Update"
-    hour: "*/12"
+    hour: "12"
     job: "suricata-update | logger -t Suricata Rules Update"
 
 - name: Migrate the suricata rules to the suricata directory
   cron:
     user: docker
     name: "Moving the Suricata Rules to the suricata directory"
-    hour: "*/13"
+    minute: "30"
+    hour: "12"
     job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/ | logger -t Updating the IDS Rules"
 
 - name: Restart the Suricata Service to apply the new rules
   cron: 
     user: docker
     name: Suricata Restart
-    hour: "*/14"
+    minute: "45"
+    hour: "12"
     job: "sudo docker exec -it IDS /bin/bash service suricata restart | logger -t Applying the most recent IDS Rules"
 
 # Uncomment the section below in IDS Multi-Tenency
