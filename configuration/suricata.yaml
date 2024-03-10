@@ -2188,7 +2188,7 @@ napatech:
 multi-detect:
   enabled: yes
   #selector: direct # direct or vlan
-  selector: device
+  selector: direct
   loaders: 6
 
   tenants:
