@@ -180,7 +180,7 @@
   ignore_errors: true
 
 - name: Get the initial set of Suricata Rules
-  shell: "suicata-update"
+  shell: "suricata-update"
 
 - name: Copy the rules to the interface directories
   shell: "cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth1/rules/ && /
