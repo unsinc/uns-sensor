@@ -36,7 +36,7 @@
       - docker-compose-plugin
 #      - apt-transport-https
 #      - software-properties-common
-#      - python3-pip
+      - python3-pip
 #      - virtualenv
 #      - python3-setuptools
 #      - gnupg-agent
