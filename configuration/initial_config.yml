@@ -183,7 +183,7 @@
 - name: Run the docker container
   shell: 
     cmd: |
-        docker compose up -d 
+        docker compose -f /Docker/docker-compose.yml up -d 
 
 - name: Attach the new SPAN interfaces to the IDS
   shell: "docker network connect {{ item }}_span IDS"
