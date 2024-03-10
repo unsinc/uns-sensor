@@ -133,7 +133,7 @@
 - name: Copy the Dockerfile
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/dockerfile
-    dest: 
+    dest: /Docker/dockerfile
 
 - name: Copy the Suricata Configuration file to the Suricata directory
   copy:
@@ -221,7 +221,7 @@
   ignore_errors: true
 
 - name: Build the Suricata IDS container with Docker 
-  shell: "docker build -t suricata ."
+  shell: "cd /Docker && docker build -t suricata ."
 
 #- name: Run the docker container
 #  shell: 
