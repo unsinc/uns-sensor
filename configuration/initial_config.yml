@@ -180,8 +180,8 @@
   ignore_errors: true
 
 - name: Change the Suricata Rules directory permissions
-  shell: "sudo chmod -R g+rw /var/lib/suricata/rules && /
-          sudo chmod -R g+rw /var/lib/suricata/update"
+  shell: "chmod -R g+rw /var/lib/suricata/rules && /
+          chmod -R g+rw /var/lib/suricata/update"
 
 - name: Adding ansible to the suricata group
   shell: "sudo usermod -a -G suricata ansibel"
