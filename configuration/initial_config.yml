@@ -39,7 +39,7 @@
 - name: Debug
   debug:
     msg: "No dev/mapper/ubuntu--vg-ubuntu--lv"
-  when: ansible_devices.dev/mapper/ubuntu--vg-ubuntu--lv is not defined
+  when: ansible_devices.dev.mapper.ubuntu--vg-ubuntu--lv is not defined
 
 
 /dev/mapper/ubuntu--vg-ubuntu--lv
