@@ -2189,30 +2189,30 @@ multi-detect:
   enabled: yes
   #selector: direct # direct or vlan
   selector: device
-  loaders: 5
+  loaders: 6
 
-  mappings:
-    - device: eth1
+    mappings:
+      - device: eth1
       tenant-id: 1
-    - device: eth2
+      - device: eth2
       tenant-id: 2
-    - device: eth3
+      - device: eth3
       tenant-id: 3
-    - device: eth4
+      - device: eth4
       tenant-id: 4
-    - device: eth5
+      - device: eth5
       tenant-id: 5
 
-  tenants:
-    - id: 1
-      yaml: /etc/suricata/eth1/eth1.yaml
-    - id: 2
-      yaml: /etc/suricata/eth2/eth2.yaml
-    - id: 3
-      yaml: /etc/suricata/eth3/eth3.yaml
-    - id: 4
-      yaml: /etc/suricata/eth4/eth4.yaml
-    - id: 5
-      yaml: /etc/suricata/eth5/eth5.yaml
+    tenants:
+       - id: 1
+       yaml: /etc/suricata/eth1/eth1.yaml
+       - id: 2
+       yaml: /etc/suricata/eth2/eth2.yaml
+       - id: 3
+       yaml: /etc/suricata/eth3/eth3.yaml
+       - id: 4
+       yaml: /etc/suricata/eth4/eth4.yaml
+       - id: 5
+       yaml: /etc/suricata/eth5/eth5.yaml
 
   
