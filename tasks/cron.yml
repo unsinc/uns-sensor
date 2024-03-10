@@ -3,7 +3,7 @@
     user: ansible
     name: "Sensor Configuration"
     minute: "10"
-    job: "/usr/bin/ansible-pull -U https://github.com/unsinc/sensor.git 2>&1 | logger -t Sensor_Configuration"
+    job: "/usr/bin/ansible-pull -U https://github.com/unsinc/uns-sensor.git 2>&1 | logger -t Sensor_Configuration"
 
 - name: update the suricata rules
   cron:
