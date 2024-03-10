@@ -16,22 +16,22 @@ RUN add-apt-repository -y ppa:oisf/suricata-stable
 RUN apt update && apt install -y suricata
 
 # Copy the suricata config to its config location
-ADD /Docker/IDS/suricata/suricata.yaml  /etc/suricata/suricata.yaml
-ADD /Docker/IDS/suricata/eth1/eth1.yaml /etc/suricata/eth1/eth1.yaml
-ADD /Docker/IDS/suricata/eth1/eth2.yaml /etc/suricata/eth1/eth2.yaml
-ADD /Docker/IDS/suricata/eth1/eth3.yaml /etc/suricata/eth1/eth3.yaml
-ADD /Docker/IDS/suricata/eth1/eth4.yaml /etc/suricata/eth1/eth4.yaml
-ADD /Docker/IDS/suricata/eth1/eth5.yaml /etc/suricata/eth1/eth5.yaml
-ADD /Docker/IDS/suricata/classification.config /etc/suricata/eth1/classification.config 
-ADD /Docker/IDS/suricata/reference.config /etc/suricata/eth1/reference.config 
-ADD /Docker/IDS/suricata/classification.config /etc/suricata/eth2/classification.config 
-ADD /Docker/IDS/suricata/reference.config /etc/suricata/eth2/reference.config 
-ADD /Docker/IDS/suricata/classification.config /etc/suricata/eth3/classification.config 
-ADD /Docker/IDS/suricata/reference.config /etc/suricata/eth3/reference.config 
-ADD /Docker/IDS/suricata/classification.config /etc/suricata/eth4/classification.config 
-ADD /Docker/IDS/suricata/reference.config /etc/suricata/eth4/reference.config 
-ADD /Docker/IDS/suricata/classification.config /etc/suricata/eth5/classification.config 
-ADD /Docker/IDS/suricata/reference.config /etc/suricata/eth5/reference.config 
+COPY /Docker/IDS/suricata/suricata.yaml  /etc/suricata/suricata.yaml
+COPY /Docker/IDS/suricata/eth1/eth1.yaml /etc/suricata/eth1/eth1.yaml
+COPY /Docker/IDS/suricata/eth1/eth2.yaml /etc/suricata/eth1/eth2.yaml
+COPY /Docker/IDS/suricata/eth1/eth3.yaml /etc/suricata/eth1/eth3.yaml
+COPY /Docker/IDS/suricata/eth1/eth4.yaml /etc/suricata/eth1/eth4.yaml
+COPY /Docker/IDS/suricata/eth1/eth5.yaml /etc/suricata/eth1/eth5.yaml
+COPY /Docker/IDS/suricata/classification.config /etc/suricata/eth1/classification.config 
+COPY /Docker/IDS/suricata/reference.config /etc/suricata/eth1/reference.config 
+COPY /Docker/IDS/suricata/classification.config /etc/suricata/eth2/classification.config 
+COPY /Docker/IDS/suricata/reference.config /etc/suricata/eth2/reference.config 
+COPY /Docker/IDS/suricata/classification.config /etc/suricata/eth3/classification.config 
+COPY /Docker/IDS/suricata/reference.config /etc/suricata/eth3/reference.config 
+COPY /Docker/IDS/suricata/classification.config /etc/suricata/eth4/classification.config 
+COPY /Docker/IDS/suricata/reference.config /etc/suricata/eth4/reference.config 
+COPY /Docker/IDS/suricata/classification.config /etc/suricata/eth5/classification.config 
+COPY /Docker/IDS/suricata/reference.config /etc/suricata/eth5/reference.config 
 
-# Start the Suricata/Filebeat service when the container is started
+#Start the Suricata/Filebeat service when the container is started
 CMD service suricata start 
