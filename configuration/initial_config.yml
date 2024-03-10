@@ -131,7 +131,7 @@
     group: docker
 
 - name: Current Working Directory
-    shell: pwd
+    shell: "pwd"
     register: current_working_directory
 
 - name: Copy the Suricata Configuration file to the Suricata directory
