@@ -35,22 +35,48 @@
       - docker-buildx-plugin
       - docker-compose-plugin
       - python3-pip
+    
+- name: create partition
+  parted:
+    device: /dev/nvme1n1
+    number: 1
+    flags: [ lvm ]
+    state: present
+    part_end: 2GB
 
-- name: Create directory IDS if does not exist
+- name: Install lvm2 dependency
+  package:
+    name: lvm2
+    state: present
+
+- name: task for creating volume group
+  lvg:
+    vg: sample-vg
+    pvs: /dev/nvme1n1p1
+    pesize: 16
+
+- name: task for creating logical volume
+  lvol:
+    vg: sample-vg
+    lv:  sample-lv
+    size: 1g
+    force: yes
+
+- name: Create directory data1 if does not exist
   file:
-    path: /IDS
+    path: /data1
     state: directory
     mode: '0755'
 
 - name: format the xfs filesystem
   filesystem:
     fstype: xfs
-    dev: /IDS
+    dev: /dev/sample-vg/sample-lv
 
-- name: mount the lv on /IDS
+- name: mount the lv on /data1
   mount:
-    path: /IDS
-    src: /IDS
+    path: /data1
+    src: /dev/sample-vg/sample-lv
     fstype: xfs
     state: mounted
 
