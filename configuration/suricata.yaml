@@ -2188,14 +2188,17 @@ napatech:
 multi-detect:
   enabled: yes
   #selector: direct # direct or vlan
-  selector: direct
+  selector: device
   loaders: 6
 
   tenants:
   - id: 1
     yaml: /etc/suricata/eth1/eth1.yaml
+  - id: 2
+    yaml: /etc/suricata/eth2/eth2.yaml
 
   mappings:
-  - device-id: eth1
+  - device: eth1
     tenant-id: 1
-
+  - device: eth2
+    tenant-id: 2
