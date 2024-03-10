@@ -36,49 +36,29 @@
       - docker-compose-plugin
       - python3-pip
     
-- name: create partition
-  parted:
-    device: /dev/nvme0n1
-    number: 1
-    flags: [ lvm ]
-    state: present
-    part_end: 2GB
+- name: Create a logical volume home with 5g
+  community.general.lvol:
+    vg: vg0
+    lv: home
+    size: 5g
 
-- name: Install lvm2 dependency
-  package:
-    name: lvm2
-    state: present
-
-- name: task for creating volume group
-  lvg:
-    vg: sample-vg
-    pvs: /dev/nvme1n1p1
-    pesize: 16
-
-- name: task for creating logical volume
-  lvol:
-    vg: sample-vg
-    lv:  sample-lv
-    size: 1g
-    force: yes
-
-- name: Create directory data1 if does not exist
-  file:
-    path: /data1
+- name: Create /home directory
+  ansible.builtin.file:
+    path: /home
     state: directory
     mode: '0755'
 
-- name: format the xfs filesystem
-  filesystem:
+- name: Create xfs filesystem on vg0-home
+  community.general.filesystem:
     fstype: xfs
-    dev: /dev/sample-vg/sample-lv
+    dev: /dev/mapper/vg0-home
 
-- name: mount the lv on /data1
-  mount:
-    path: /data1
-    src: /dev/sample-vg/sample-lv
+- name: Mount home volume
+  ansible.posix.mount:
+    path: /home
+    src: /dev/mapper/vg0-home
     fstype: xfs
-    state: mounted
+    state: present
 
 - name: Install Docker module for Python
   shell: "pip install --upgrade suricata-update"
