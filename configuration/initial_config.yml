@@ -165,55 +165,15 @@
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/eth5.yaml
     dest: /Docker/IDS/suricata/eth5/eth5.yaml
 
-- name: Copy the Suricata eth1 classification file to the Suricata directory
+- name: Copy the Suricata Classification file to the Suricata directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/classification.config
-    dest: /Docker/IDS/suricata/eth1/classification.config
+    dest: /Docker/IDS/suricata/classification.config
 
-- name: Copy the Suricata eth2 classification file to the Suricata directory
-  copy:
-    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/classification.config
-    dest: /Docker/IDS/suricata/eth2/classification.config
-
-- name: Copy the Suricata eth3 classification file to the Suricata directory
-  copy:
-    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/classification.config
-    dest: /Docker/IDS/suricata/eth3/classification.config
-
-- name: Copy the Suricata eth4 classification file to the Suricata directory
-  copy:
-    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/classification.config
-    dest: /Docker/IDS/suricata/eth4/classification.config
-
-- name: Copy the Suricata eth5 classification file to the Suricata directory
-  copy:
-    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/classification.config
-    dest: /Docker/IDS/suricata/eth5/classification.config
-
-- name: Copy the Suricata eth1 reference file to the Suricata directory
+- name: Copy the Suricata Reference file to the Suricata directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/reference.config
-    dest: /Docker/IDS/suricata/eth1/reference.config
-
-- name: Copy the Suricata eth2 reference file to the Suricata directory
-  copy:
-    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/reference.config
-    dest: /Docker/IDS/suricata/eth2/reference.config
-
-- name: Copy the Suricata eth3 reference file to the Suricata directory
-  copy:
-    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/reference.config
-    dest: /Docker/IDS/suricata/eth3/reference.config
-
-- name: Copy the Suricata eth4 reference file to the Suricata directory
-  copy:
-    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/reference.config
-    dest: /Docker/IDS/suricata/eth4/reference.config
-
-- name: Copy the Suricata eth5 reference file to the Suricata directory
-  copy:
-    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/reference.config
-    dest: /Docker/IDS/suricata/eth5/reference.config
+    dest: /Docker/IDS/suricata/reference.config
 
 - name: Create the needed span interfaces
   shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
