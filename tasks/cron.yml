@@ -12,44 +12,59 @@
     hour: "*/12"
     job: "suricata-update | logger -t Suricata Rules Update"
 
-- name: update the eth1 suricata rules
+- name: Migrate the suricata rules to the suricata directory
   cron:
     user: docker
-    name: "eth1 Suricata Rules Update"
+    name: "Moving the Suricata Rules to the suricata directory"
     hour: "*/13"
-    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth1/ | logger -t Updating the eth1 Rules"
+    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/ | logger -t Updating the IDS Rules"
 
-- name: update the eth2 suricata rules
-  cron:
+- name: Restart the Suricata Service to apply the new rules
+  cron: 
     user: docker
-    name: "eth2 Suricata Rules Update"
-    hour: "*/13"
-    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth2/ | logger -t Updating the eth2 Rules"
+    name: Suricata Restart
+    hour: "*/14"
+    job: "sudo docker exec -it IDS /bin/bash service suricata restart | logger -t Applying the most recent IDS Rules"
 
-- name: update the eth3 suricata rules
-  cron:
-    user: docker
-    name: "eth3 Suricata Rules Update"
-    hour: "*/13"
-    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth3/ | logger -t Updating the eth3 Rules"
-
-- name: update the eth4 suricata rules
-  cron:
-    user: docker
-    name: "eth1 Suricata Rules Update"
-    hour: "*/13"
-    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth4/ | logger -t Updating the eth4 Rules"
-
-- name: update the eth5 suricata rules
-  cron:
-    user: docker
-    name: "eth5 Suricata Rules Update"
-    hour: "*/13"
-    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth5/ | logger -t Updating the eth5 Rules"
-
-- name: Load the new Suricata Rules
-  cron:
-    user: docker
-    name: "Suricata Rules Application"
-    hour: "*/13"
-    job: "docker exec IDS /bin/sh -c systemctl reload suricata | logger -t Updating the active Suricata Rules"
+# Uncomment the section below in Multi-Tenency
+#- name: update the eth1 suricata rules
+#  cron:
+#    user: docker
+#    name: "eth1 Suricata Rules Update"
+#    hour: "*/13"
+#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth1/ | logger -t Updating the eth1 Rules"
+#
+#- name: update the eth2 suricata rules
+#  cron:
+#    user: docker
+#    name: "eth2 Suricata Rules Update"
+#    hour: "*/13"
+#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth2/ | logger -t Updating the eth2 Rules"
+#
+#- name: update the eth3 suricata rules
+#  cron:
+#    user: docker
+#    name: "eth3 Suricata Rules Update"
+#    hour: "*/13"
+#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth3/ | logger -t Updating the eth3 Rules"
+#
+#- name: update the eth4 suricata rules
+#  cron:
+#    user: docker
+#    name: "eth1 Suricata Rules Update"
+#    hour: "*/13"
+#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth4/ | logger -t Updating the eth4 Rules"
+#
+#- name: update the eth5 suricata rules
+#  cron:
+#    user: docker
+#    name: "eth5 Suricata Rules Update"
+#    hour: "*/13"
+#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth5/ | logger -t Updating the eth5 Rules"
+#
+#- name: Load the new Suricata Rules
+#  cron:
+#    user: docker
+#    name: "Suricata Rules Application"
+#    hour: "*/13"
+#    job: "docker exec IDS /bin/sh -c systemctl reload suricata | logger -t Updating the active Suricata Rules"
