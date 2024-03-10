@@ -39,7 +39,7 @@
 - name: Debug
   debug:
     msg: "No ubuntu--vg-ubuntu--l"
-  when: ansible_devices.dev.mapper.partitions.ubuntu--vg-ubuntu--lv is not defined
+  when: ansible_devices.mapper.ubuntu--vg-ubuntu--lv is not defined
 
 - name: Install Docker module for Python
   shell: "pip install --upgrade suricata-update"
