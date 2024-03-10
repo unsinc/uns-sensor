@@ -2188,7 +2188,7 @@ napatech:
 multi-detect:
   enabled: yes
   #selector: direct # direct or vlan
-  selector: device
+  selector: vlan
   loaders: 6
 
   tenants:
@@ -2198,7 +2198,7 @@ multi-detect:
     yaml: /etc/suricata/eth2/eth2.yaml
 
   mappings:
-  - device-id: eth1
+  - device: eth1
     tenant-id: 1
-  - device-id: eth2
+  - device: eth2
     tenant-id: 2
