@@ -2196,6 +2196,6 @@ multi-detect:
     yaml: /etc/suricata/eth1/eth1.yaml
 
   mappings:
-  - vlan-id: 0
+  - vlan-id: 1
     tenant-id: 1
 
