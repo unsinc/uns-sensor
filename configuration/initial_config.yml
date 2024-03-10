@@ -38,7 +38,7 @@
     
 - name: create partition
   parted:
-    device: /dev/nvme0n1
+    device: /dev/nvme1n1
     number: 1
     flags: [ lvm ]
     state: present
@@ -52,7 +52,7 @@
 - name: task for creating volume group
   lvg:
     vg: sample-vg
-    pvs: /dev/nvme0n1p1
+    pvs: /dev/nvme1n1p1
     pesize: 16
 
 - name: task for creating logical volume
