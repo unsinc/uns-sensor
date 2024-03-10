@@ -181,24 +181,26 @@
 - name: Copy the Suricata Classification file to the Suricata directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/classification.config
-    dest: "/Docker/IDS/suricata/{{ item }}/classification.config"
-  with_items:
-      - eth1
-      - eth2
-      - eth3
-      - eth4
-      - eth5
+    dest: "/Docker/IDS/suricata/classification.config"
+#    dest: "/Docker/IDS/suricata/{{ item }}/classification.config"
+#  with_items:
+#      - eth1
+#      - eth2
+#      - eth3
+#      - eth4
+#      - eth5
 
 - name: Copy the Suricata Reference file to the Suricata directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/reference.config
-    dest: "/Docker/IDS/suricata/{{ item }}/reference.config"
-  with_items:
-      - eth1
-      - eth2
-      - eth3
-      - eth4
-      - eth5
+    dest: "/Docker/IDS/suricata/reference.config"
+#    dest: "/Docker/IDS/suricata/{{ item }}/reference.config"
+#  with_items:
+#      - eth1
+#      - eth2
+#      - eth3
+#      - eth4
+#      - eth5
 
 - name: Create the needed span interfaces
   shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
@@ -214,13 +216,14 @@
 - name: Copy the Suricata Rules file to the Suricata eth1 Rules directory
   copy:
     src: /var/lib/suricata/rules/
-    dest: "/Docker/IDS/suricata/{{ item }}/rules/"
-  with_items:
-      - eth1
-      - eth2
-      - eth3
-      - eth4
-      - eth5
+    dest: "/Docker/IDS/suricata/rules/"
+#    dest: "/Docker/IDS/suricata/{{ item }}/rules/"
+#  with_items:
+#      - eth1
+#      - eth2
+#      - eth3
+#      - eth4
+#      - eth5
 
 - name: Run the docker container
   shell: 
