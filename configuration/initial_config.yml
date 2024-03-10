@@ -38,7 +38,7 @@
     
 - name: Create a logical volume home with 5g
   community.general.lvol:
-    vg: vg1
+    vg: ubuntu-vg
     lv: home
     size: 5g
 
@@ -51,12 +51,12 @@
 - name: Create xfs filesystem on vg0-home
   community.general.filesystem:
     fstype: xfs
-    dev: /dev/mapper/vg1-home
+    dev: /dev/mapper/ubuntu-vg-home
 
 - name: Mount home volume
   ansible.posix.mount:
     path: /home
-    src: /dev/mapper/vg1-home
+    src: /dev/mapper/ubuntu-vg-home
     fstype: xfs
     state: present
 
