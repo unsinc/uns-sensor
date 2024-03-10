@@ -129,6 +129,20 @@
     owner: docker
     group: docker
 
+- name: Create Suricata Update-Rules directory if it does not exist
+  file:
+    path: /var/lib/suricata/rules
+    state: directory
+    owner: root
+    group: suricata
+
+- name: Create Suricata Update-Rules Update directory if it does not exist
+  file:
+    path: /var/lib/suricata/update
+    state: directory
+    owner: root
+    group: suricata
+
 - name: Copy the Dockerfile
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/dockerfile
