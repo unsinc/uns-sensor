@@ -38,7 +38,7 @@
     
 - name: create partition
   parted:
-    device: /dev/nvme1n1
+    device: /dev/nvme0n1
     number: 1
     flags: [ lvm ]
     state: present
