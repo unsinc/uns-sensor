@@ -44,20 +44,20 @@
 
 - name: Create /home directory
   ansible.builtin.file:
-    path: /home
+    path: /test
     state: directory
     mode: '0755'
 
 - name: Create xfs filesystem on vg0-home
   community.general.filesystem:
-    fstype: xfs
-    dev: /dev/mapper/ubuntu--vg-home
+    fstype: ext4
+    dev: /dev/mapper/ubuntu--vg-test
 
 - name: Mount home volume
   ansible.posix.mount:
-    path: /home
-    src: /dev/mapper/ubuntu--vg-home
-    fstype: xfs
+    path: /test
+    src: /dev/mapper/ubuntu--vg-test
+    fstype: ext4
     state: present
 
 - name: Install Docker module for Python
