@@ -130,7 +130,7 @@
     owner: docker
     group: docker
 
-name: current_working_directory
+- name: Current Working Directory
     shell: pwd
     register: current_working_directory
 

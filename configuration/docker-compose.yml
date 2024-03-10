@@ -1,6 +1,5 @@
 services:
-  myubuntu:
-    hostname: ubuntu
-    image: ubuntu:22.04
-    container_name: test
+  IDS:
+    hostname: IDS
+    container_name: suricata
     restart: unless-stopped
