@@ -184,7 +184,7 @@
           chmod -R g+rw /var/lib/suricata/update"
 
 - name: Adding ansible to the suricata group
-  shell: "sudo usermod -a -G suricata ansibel"
+  shell: "sudo usermod -a -G suricata ansible"
 
 - name: Get the initial set of Suricata Rules
   shell: "suricata-update"
