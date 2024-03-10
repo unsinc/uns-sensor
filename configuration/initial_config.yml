@@ -36,7 +36,6 @@
       - docker-compose-plugin
       - python3-pip
 
-tasks:
 - name: Debug
   debug:
     msg: "No ubuntu--vg-ubuntu--l"
