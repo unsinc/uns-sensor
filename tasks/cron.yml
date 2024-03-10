@@ -7,7 +7,7 @@
 
 - name: update the suricata rules
   cron:
-    user: docker
+    user: suricata
     name: "Suricata Rule Update"
     hour: "12"
     job: "suricata-update | logger -t Suricata Rules Update"
