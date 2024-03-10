@@ -683,26 +683,26 @@ af-packet:
 
   # Put default values here. These will be used for an interface that is not
   # in the list above.
-  - interface: default
+  #- interface: default
+  #  threads: auto
+  #  use-mmap: yes
+  #  tpacket-v3: yes
+  - interface: eth2
     threads: auto
     use-mmap: yes
     tpacket-v3: yes
-  #- interface: eth2
-  #  threads: auto
-  #  use-mmap: yes
-  #  tpacket-v3: yes
-  #- interface: eth3
-  #  threads: auto
-  #  use-mmap: yes
-  #  tpacket-v3: yes
-  #- interface: eth4
-  #  threads: auto
-  #  use-mmap: yes
-  #  tpacket-v3: yes
-  #- interface: eth5
-  #  threads: auto
-  #  use-mmap: yes
-  #  tpacket-v3: yes
+  - interface: eth3
+    threads: auto
+    use-mmap: yes
+    tpacket-v3: yes
+  - interface: eth4
+    threads: auto
+    use-mmap: yes
+    tpacket-v3: yes
+  - interface: eth5
+    threads: auto
+    use-mmap: yes
+    tpacket-v3: yes
 
 # Linux high speed af-xdp capture support
 af-xdp:
