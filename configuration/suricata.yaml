@@ -2191,18 +2191,6 @@ multi-detect:
   selector: device
   loaders: 6
 
-    mappings:
-      - device: eth1
-        tenant-id: 1
-      - device: eth2
-        tenant-id: 2
-      - device: eth3
-        tenant-id: 3
-      - device: eth4
-        tenant-id: 4
-      - device: eth5
-        tenant-id: 5
-
     tenants:
        - id: 1
          yaml: /etc/suricata/eth1/eth1.yaml
@@ -2215,4 +2203,14 @@ multi-detect:
        - id: 5
          yaml: /etc/suricata/eth5/eth5.yaml
 
-  
+    mappings:
+      - device: eth1
+        tenant-id: 1
+      - device: eth2
+        tenant-id: 2
+      - device: eth3
+        tenant-id: 3
+      - device: eth4
+        tenant-id: 4
+      - device: eth5
+        tenant-id: 5  
