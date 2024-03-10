@@ -37,10 +37,10 @@
       - python3-pip
 
 - name: Create directory IDS if does not exist
-    file:
-      path: /IDS
-      state: directory
-      mode: '0755'
+  file:
+    path: /IDS
+    state: directory
+    mode: '0755'
 
 - name: format the xfs filesystem
   filesystem:
