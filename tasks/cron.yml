@@ -46,3 +46,10 @@
     name: "eth5 Suricata Rules Update"
     hour: "*/13"
     job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth5/ | logger -t Updating the eth5 Rules"
+
+- name: Load the new Suricata Rules
+  cron:
+    user: docker
+    name: "Suricata Rules Application"
+    hour: "*/13"
+    job: "docker exec IDS /bin/sh -c "suricatasc -c ruleset-reload-nonblocking" | logger -t Updating the eth5 Rules"
