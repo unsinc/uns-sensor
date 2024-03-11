@@ -40,7 +40,8 @@
   lvol:
     vg: ubuntu-vg
     lv: sns
-    size: 100%FREE    
+    size: 100%FREE
+    state: absent    
 
 - name: Create /sns directory
   file:
