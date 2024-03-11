@@ -42,7 +42,7 @@
     lv: sns
     size: 100%FREE
     state: absent
-  when: absible_lvm['vgs']['ubuntu--vg-sns'] is not defined    
+  when: absible_lvm['vgs']['sns'] is not defined    
 
 - name: Create /sns directory
   file:
