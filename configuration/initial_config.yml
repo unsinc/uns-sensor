@@ -70,8 +70,8 @@
     path: /sns/docker
   register: stat_tmp
 
-  vars: 
-    docker: {{ stat_tmp }}
+vars: 
+  docker: {{ stat_tmp }}
 
 - name: Stop Docker for migration
   shell: "sudo service docker stop"
