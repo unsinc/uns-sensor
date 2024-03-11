@@ -73,7 +73,7 @@
     path: /etc/docker 
     state: directory
     owner: root
-    group: docker
+    group: root
 
 - name:  Move Docker to /sns
   shell:
