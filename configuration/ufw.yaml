@@ -15,14 +15,16 @@
     rule: limit
     port: ssh
     proto: tcp
-
-- name: Allow SSH
-  community.general.ufw:
-    rule: allow
-    port: ssh
-    protocol: tcp
     direction: in
     interface: ens160
+
+#- name: Allow SSH
+#  community.general.ufw:
+#    rule: allow
+#    port: ssh
+#    protocol: tcp
+#    direction: in
+#    interface: ens160
 
 - name: Deny outbound traffic on the SPAN ports
   shell: "sudo ufw deny out on {{ item }}"
@@ -30,7 +32,7 @@
   ignore_errors: true
 
 - name: Allow all inbound traffic on the SPAN ports
-  shell: "sudo ufw allow inbound on {{ item }}"
+  shell: "sudo ufw allow in on {{ item }}"
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
   ignore_errors: true
 
