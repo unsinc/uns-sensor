@@ -40,7 +40,7 @@
   lvol:
     vg: ubuntu-vg
     lv: test2
-    size: FREE    
+    size: %FREE    
 
 - name: Create /home directory
   file:
