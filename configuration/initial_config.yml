@@ -51,14 +51,15 @@
 - name: Create xfs filesystem on vg0-home
   filesystem:
     fstype: ext4
-    dev: /dev/mapper/ubuntu-vg-test1
+    dev: /dev/mapper/ubuntu--vg-test1
 
 - name: Mount home volume
   mount:
     path: /test1
-    src: /dev/mapper/ubuntu-vg-test1
+    src: /dev/mapper/ubuntu--vg-test1
     fstype: ext4
-    state: present
+    boot: true
+    state: mounted
 
 - name: Install Docker module for Python
   shell: "pip install --upgrade suricata-update"
