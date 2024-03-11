@@ -70,13 +70,10 @@
     path: /sns/docker
   register: stat_tmp
 
-vars: 
-  docker: {{ stat_tmp }}
-
 - name: Stop Docker for migration
   shell: "sudo service docker stop"
   when:
-    - docker.stat.exists|bool == flase
+    - stat_tmp.stat.exists|bool == flase
 
 - name: Move the Docker Files 
   shell: "sudo cp -a /var/lib/docker/ /sns/docker/"
@@ -90,7 +87,7 @@ vars:
     owner: root
     group: root
   when:
-    - docker.stat.exists|bool == flase
+    - stat_tmp.stat.exists|bool == flase
 
 - name:  Move Docker to /sns
   shell:
@@ -99,17 +96,17 @@ vars:
               \"data-root\": \"/sns/docker\" 
           }" > /etc/docker/daemon.json
   when:
-    - docker.stat.exists|bool == flase
+    - stat_tmp.stat.exists|bool == flase
 
 - name: Migrate the Docker data
   shell: "sudo cp -a /var/lib/docker/ /sns/"
   when:
-    - docker.stat.exists|bool == flase 
+    - stat_tmp.stat.exists|bool == flase 
 
 - name: Start Docker after migration
   shell: "sudo service docker start"
   when:
-    - docker.stat.exists|bool == flase
+    - stat_tmp.stat.exists|bool == flase
 
 - name: Install Suricata-Update
   shell: "pip install --upgrade suricata-update"
