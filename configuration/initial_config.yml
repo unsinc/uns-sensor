@@ -61,7 +61,26 @@
     boot: true
     state: mounted
 
-- name: Install Docker module for Python
+- name: Stop Docker for migration
+  shell: "sudo service docker stop"
+
+- name: Move the Docker Files 
+  shell: 
+
+- name:  Move Docker to /sns
+  shell:
+    cmd: |
+         echo "{
+              \"data-root\": \"/sns/docker\" 
+          }" > /etc/docker/daemon.json
+
+- name: Migrate the Docker data
+  shell: "sudo cp -a /var/lib/docker/ /sns/docker" 
+
+- name: Start Docker after migration
+  shell: "sudo service docker start"
+
+- name: Install Suricata-Update
   shell: "pip install --upgrade suricata-update"
 
 - name: Upgrade all packages used by the sensor
