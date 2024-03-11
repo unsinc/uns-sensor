@@ -1,6 +1,6 @@
 - name: Enable UFW
-    community.general.ufw:
-      state: enabled
+  community.general.ufw:
+    state: enabled
 
 - name: Set logging
   community.general.ufw:
