@@ -9,5 +9,4 @@ services:
     restart: always
     volumes:
       - /var/log/suricata:/var/log/suricata
-      - /sns/IDS/suricata/suricata.yaml:/etc/suricata/suricata.yaml
       - /sns/IDS/suricata:/etc/suricata
