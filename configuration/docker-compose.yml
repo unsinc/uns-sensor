@@ -7,6 +7,6 @@ services:
       context: /sns/docker
       dockerfile: dockerfile
     restart: always
-#    volumes:
-#      - /var/log/suricata:/var/log/suricata
-#      - /sns/IDS/suricata:/etc/suricata
+    volumes:
+      - /var/log/suricata:/var/log/suricata
+      - /sns/IDS/suricata:/etc/suricata
