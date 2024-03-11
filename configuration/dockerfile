@@ -20,6 +20,3 @@ RUN apt update && apt install -y suricata && apt install net-tools
 
 #Start the container
 CMD tail -F /dev/null
-
-#Run Suricata
-CMD service suricata start
