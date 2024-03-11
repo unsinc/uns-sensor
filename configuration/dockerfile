@@ -19,7 +19,7 @@ RUN add-apt-repository -y ppa:oisf/suricata-stable
 RUN apt update && apt install -y suricata && apt install net-tools
 
 #Start the container
-CMD ["bash"]
+CMD ["tail -f /dev/null"]
 
 #Run Suricata
 RUN service suricata start
