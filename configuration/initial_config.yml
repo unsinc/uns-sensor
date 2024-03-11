@@ -35,18 +35,13 @@
       - docker-buildx-plugin
       - docker-compose-plugin
       - python3-pip
-
-- name: Check if the /sns volume group has been created
-  command: item.mount == '/sns' 
-  register: result
-  ignore_errors: true
     
 - name: Create a logical volume sns with the rest of the available space
   lvol:
     vg: ubuntu-vg
     lv: sns
     size: 100%FREE
-  when: result is failed    
+  ignore_errors: true
 
 - name: Create /sns directory
   file:
@@ -59,7 +54,7 @@
     fstype: ext4
     dev: /dev/mapper/ubuntu--vg-sns
 
-- name: Mount home volume
+- name: Mount sns volume
   mount:
     path: /sns
     src: /dev/mapper/ubuntu--vg-sns
@@ -71,7 +66,7 @@
   shell: "sudo service docker stop"
 
 - name: Move the Docker Files 
-  shell: 
+  shell: "sudo cp -a /var/lib/docker/ /sns/docker/"
 
 - name:  Move Docker to /sns
   shell:
