@@ -35,14 +35,18 @@
       - docker-buildx-plugin
       - docker-compose-plugin
       - python3-pip
+
+- name: Check if the /sns volume group has been created
+  command: item.mount == '/dev/mapper/ubuntu--vg-sns' 
+  register: result
+  ignore_errors: true
     
 - name: Create a logical volume sns with the rest of the available space
   lvol:
     vg: ubuntu-vg
     lv: sns
     size: 100%FREE
-    state: absent
-  when: item.mount == '/dev/mapper/ubuntu--vg-sns' is failed    
+  when: result is failed    
 
 - name: Create /sns directory
   file:
