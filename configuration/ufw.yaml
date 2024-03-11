@@ -62,7 +62,6 @@
   community.general.ufw:
     rule: allow
     port: "6514"
-    protocol: udp
     direction: in
     interface: ens160
 
