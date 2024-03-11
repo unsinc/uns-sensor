@@ -51,7 +51,7 @@
 - name: Create xfs filesystem on vg0-home
   filesystem:
     fstype: ext4
-    dev: /dev/mapper/ubuntu--vg-test1
+    dev: /dev/mapper/ubuntu-vg-test1
 
 - name: Mount home volume
   mount:
