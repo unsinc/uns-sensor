@@ -68,6 +68,13 @@
 - name: Move the Docker Files 
   shell: "sudo cp -a /var/lib/docker/ /sns/docker/"
 
+- name: Create docker directory if it does not exist
+  file:
+    path: /etc/docker 
+    state: directory
+    owner: root
+    group: docker
+
 - name:  Move Docker to /sns
   shell:
     cmd: |
