@@ -11,7 +11,12 @@
 
   tasks:
     -  include_tasks: configuration/users.yml
+       state: latest
     -  include_tasks: tasks/cron.yml
+       state: latest
     -  include_tasks: configuration/initial_config.yml
+       state: latest
     -  include_tasks: tasks/update.yml
+       state: latest
     -  include_tasks: configuration/ufw.yaml
+       state: latest

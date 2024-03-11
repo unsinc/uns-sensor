@@ -10,7 +10,7 @@
   shell: "sudo ufw default allow outgoing"
 
 - name: Add rate limiting for ssh
- community.general.ufw:
+  community.general.ufw:
     rule: limit
     port: ssh
     proto: tcp
