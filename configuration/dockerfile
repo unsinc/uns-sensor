@@ -19,7 +19,7 @@ RUN add-apt-repository -y ppa:oisf/suricata-stable
 RUN apt update && apt install -y suricata && apt install net-tools
 
 #Start the container
-CMD echo 'Hello World'; sleep infinity
+CMD ["bash"]
 
 #Run Suricata
-RUN service surcata start
+RUN service suricata start
