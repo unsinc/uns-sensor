@@ -4,10 +4,10 @@ services:
     hostname: IDS
     container_name: IDS
     build:
-      context: /Docker
+      context: /sns/docker
       dockerfile: dockerfile
     restart: always
     volumes:
       - /var/log/suricata:/var/log/suricata
-      - /Docker/IDS/suricata/suricata.yaml:/etc/suricata/suricata.yaml
-      - /Docker/IDS/suricata:/etc/suricata
+      - /sns/IDS/suricata/suricata.yaml:/etc/suricata/suricata.yaml
+      - /sns/IDS/suricata:/etc/suricata

@@ -111,7 +111,7 @@
 - name: Copy the docker-compose file to the Docker directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/docker-compose.yml
-    dest: /sns/docker-compose.yml
+    dest: /sns/docker/docker-compose.yml
 
 - name: Create Suricata directory if it does not exist
   file:
@@ -173,7 +173,7 @@
 - name: Copy the Dockerfile
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/dockerfile
-    dest: /sns/dockerfile
+    dest: /sns/docker/dockerfile
 
 - name: Copy the Suricata Configuration file to the Suricata directory
   copy:
@@ -262,7 +262,7 @@
 - name: Run the docker container
   shell: 
     cmd: |
-        docker compose -f /sns/docker-compose.yml up -d 
+        docker compose -f /sns/docker/docker-compose.yml up -d 
 
 - name: Attach the new SPAN interfaces to the IDS
   shell: "docker network connect {{ item }}_span IDS"
