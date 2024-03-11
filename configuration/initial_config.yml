@@ -37,7 +37,7 @@
       - python3-pip
 
 - name: Check if the /sns volume group has been created
-  command: item.mount == 'ubuntu--vg-sns' 
+  command: item.mount == '/sns' 
   register: result
   ignore_errors: true
     
