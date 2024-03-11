@@ -18,6 +18,8 @@ RUN add-apt-repository -y ppa:oisf/suricata-stable
 # Update the repos and install Suricata
 RUN apt update && apt install -y suricata && apt install net-tools
 
-#Start the Suricata/Filebeat service when the container is started
+#Start the container
 CMD echo 'Hello World'; sleep infinity
-CMD service suricata start
+
+#Run Suricata
+RUN service surcata start
