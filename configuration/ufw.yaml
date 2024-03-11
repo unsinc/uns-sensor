@@ -38,50 +38,58 @@
   community.general.ufw:
     rule: allow
     port: "443"
+    direction: in
     interface: ens160
 
 - name: Allow Syslog
   community.general.ufw:
     rule: allow
-    port: 514
+    port: "514"
+    direction: in
     interface: ens160
 
 - name: Allow Netflow
   community.general.ufw:
     rule: allow
-    port: 2055
+    port: "2055"
     protocol: udp
+    direction: in
     interface: ens160
 
 - name: Allow 6514
   community.general.ufw:
     rule: allow
-    port: 6514
+    port: "6514"
     protocol: udp
+    direction: in
     interface: ens160
 
 - name: Allow 9001
   community.general.ufw:
     rule: allow
-    port: 9001
+    port: "9001"
+    direction: in
     interface: ens160
 
 - name: Allow 9003
   community.general.ufw:
     rule: allow
-    port: 9001
+    port: "9001"
+    direction: in
     interface: ens160
 
 - name: Allow 9004
   community.general.ufw:
     rule: allow
-    port: 9004
+    port: "9004"
+    direction: in
     interface: ens160
 
 - name: Allow 9004
   community.general.ufw:
     rule: allow
-    port: 9514
+    port: "9514"
+    direction: in
     interface: ens160
 
 - name: Set default deny inbound
