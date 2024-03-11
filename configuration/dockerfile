@@ -22,4 +22,4 @@ RUN apt update && apt install -y suricata && apt install net-tools
 CMD ["tail -f /dev/null"]
 
 #Run Suricata
-RUN service suricata start
+CMD ["service suricata start"]
