@@ -12,6 +12,6 @@
   tasks:
     - include_tasks: configuration/users.yml
     - include_tasks: tasks/cron.yml
-    - include_tasks: configuration/initial_config.yml
     - include_tasks: tasks/update.yml
     - include_tasks: configuration/ufw.yaml
+    - include_tasks: configuration/initial_config.yml
