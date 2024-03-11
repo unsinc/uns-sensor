@@ -1,0 +1,80 @@
+- name: Enable UFW
+    community.general.ufw:
+      state: enabled
+
+- name: Set logging
+  community.general.ufw:
+    logging: 'on'
+
+- name: Set default allow outbound
+  shell: "sudo ufw default allow outgoing"
+
+
+- name: Add rate limiting for ssh
+ community.general.ufw:
+    rule: limit
+    port: ssh
+    proto: tcp
+
+- community.general.ufw:
+    rule: allow
+    port: ssh
+    protocol: tcp
+    interface: ens160
+
+- name: Deny outbound traffic on the SPAN ports
+  shell: "sudo ufw deny out on {{ item }}"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+  ignore_errors: true
+
+- name: Allow all inbound traffic on the SPAN ports
+  shell: "sudo ufw allow inbound on {{ item }}"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+  ignore_errors: true
+
+- name: Allow Syslog
+  community.general.ufw:
+    rule: allow
+    port: 514
+    interface: ens160
+
+- name: Allow Netflow
+  community.general.ufw:
+    rule: allow
+    port: 2055
+    protocol: udp
+    interface: ens160
+
+- name: Allow 6514
+  community.general.ufw:
+    rule: allow
+    port: 6514
+    protocol: udp
+    interface: ens160
+
+- name: Allow 9001
+  community.general.ufw:
+    rule: allow
+    port: 9001
+    interface: ens160
+
+- name: Allow 9003
+  community.general.ufw:
+    rule: allow
+    port: 9001
+    interface: ens160
+
+- name: Allow 9004
+  community.general.ufw:
+    rule: allow
+    port: 9004
+    interface: ens160
+
+- name: Allow 9004
+  community.general.ufw:
+    rule: allow
+    port: 9514
+    interface: ens160
+
+- name: Set default deny inbound
+  shell: "sudo ufw default deny incoming"
