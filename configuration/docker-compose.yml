@@ -10,4 +10,3 @@ services:
     volumes:
       - /var/log/suricata:/var/log/suricata
       - /sns/IDS/suricata:/etc/suricata
-    command: bash -c "service suricata start"
