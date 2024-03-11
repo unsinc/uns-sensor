@@ -21,7 +21,7 @@
     rule: allow
     port: ssh
     protocol: tcp
-    direction: inbound
+    direction: in
     interface: ens160
 
 - name: Deny outbound traffic on the SPAN ports
