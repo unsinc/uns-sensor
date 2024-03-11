@@ -71,7 +71,7 @@
 - name:  Move Docker to /sns
   shell:
     cmd: |
-         echo "{
+         sudo echo "{
               \"data-root\": \"/sns/docker\" 
           }" > /etc/docker/daemon.json
 
