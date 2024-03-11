@@ -36,13 +36,13 @@
       - docker-compose-plugin
       - python3-pip
     
-- name: Create a logical volume home with 5g
+- name: Create a logical volume sns with the rest of the available space
   lvol:
     vg: ubuntu-vg
     lv: sns
     size: 100%FREE    
 
-- name: Create /home directory
+- name: Create /sns directory
   file:
     path: /sns
     state: directory
@@ -73,13 +73,6 @@
 - name: Set all monitoring interfaces to optional
   shell: "netplan set ethernets.{{ item }}.optional=true"
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
-
-- name: Create Docker directory if it does not exist
-  file:
-    path: /sns
-    state: directory
-    owner: docker
-    group: docker
 
 - name: Create Suricata Log directory if it does not exist
   file:
