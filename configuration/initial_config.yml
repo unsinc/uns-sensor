@@ -39,24 +39,24 @@
 - name: Create a logical volume home with 5g
   lvol:
     vg: ubuntu-vg
-    lv: test1
-    size: 5g
+    lv: test2
+    
 
 - name: Create /home directory
   file:
-    path: /test1
+    path: /test2
     state: directory
     mode: '0755'
 
 - name: Create xfs filesystem on vg0-home
   filesystem:
     fstype: ext4
-    dev: /dev/mapper/ubuntu--vg-test1
+    dev: /dev/mapper/ubuntu--vg-test2
 
 - name: Mount home volume
   mount:
-    path: /test1
-    src: /dev/mapper/ubuntu--vg-test1
+    path: /test2
+    src: /dev/mapper/ubuntu--vg-test2
     fstype: ext4
     boot: true
     state: mounted
