@@ -65,11 +65,20 @@
 - name: Adding ansible to the Docker group
   shell: "sudo usermod -a -G docker ansible"
 
+- name: Check if Docker has been migrated
+  stat:
+    path: /sns/docker
+  register: stat_tmp
+
 - name: Stop Docker for migration
   shell: "sudo service docker stop"
+  when:
+    - stat_tmp.stat.exists|bool == flase
 
 - name: Move the Docker Files 
   shell: "sudo cp -a /var/lib/docker/ /sns/docker/"
+  when:
+    - stat_tmp.stat.exists|bool == flase
 
 - name: Create docker directory if it does not exist
   file:
@@ -77,6 +86,8 @@
     state: directory
     owner: root
     group: root
+  when:
+    - stat_tmp.stat.exists|bool == flase
 
 - name:  Move Docker to /sns
   shell:
@@ -84,12 +95,18 @@
          sudo echo "{
               \"data-root\": \"/sns/docker\" 
           }" > /etc/docker/daemon.json
+  when:
+    - stat_tmp.stat.exists|bool == flase
 
 - name: Migrate the Docker data
-  shell: "sudo cp -a /var/lib/docker/ /sns/" 
+  shell: "sudo cp -a /var/lib/docker/ /sns/"
+  when:
+    - stat_tmp.stat.exists|bool == flase 
 
 - name: Start Docker after migration
   shell: "sudo service docker start"
+  when:
+    - stat_tmp.stat.exists|bool == flase
 
 - name: Install Suricata-Update
   shell: "pip install --upgrade suricata-update"
