@@ -37,26 +37,26 @@
       - python3-pip
     
 - name: Create a logical volume home with 5g
-  community.general.lvol:
+  lvol:
     vg: ubuntu-vg
-    lv: test
+    lv: test1
     size: 5g
 
 - name: Create /home directory
-  ansible.builtin.file:
-    path: /test
+  file:
+    path: /test1
     state: directory
     mode: '0755'
 
 - name: Create xfs filesystem on vg0-home
-  community.general.filesystem:
+  filesystem:
     fstype: ext4
-    dev: /dev/mapper/ubuntu--vg-test
+    dev: /dev/mapper/ubuntu--vg-test1
 
 - name: Mount home volume
-  ansible.posix.mount:
-    path: /test
-    src: /dev/mapper/ubuntu--vg-test
+  mount:
+    path: /test1
+    src: /dev/mapper/ubuntu--vg-test1
     fstype: ext4
     state: present
 
