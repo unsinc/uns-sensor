@@ -49,7 +49,7 @@
     state: directory
     mode: '0755'
 
-- name: Create xfs filesystem on vg0-home
+- name: Create xfs filesystem on ubuntu--vg-sns
   filesystem:
     fstype: ext4
     dev: /dev/mapper/ubuntu--vg-sns
