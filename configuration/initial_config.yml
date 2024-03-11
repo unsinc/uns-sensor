@@ -41,7 +41,8 @@
     vg: ubuntu-vg
     lv: sns
     size: 100%FREE
-    state: absent    
+    state: absent
+  when: ansible_lvm['vgs']['sns'] is succeeded    
 
 - name: Create /sns directory
   file:
