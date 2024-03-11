@@ -62,6 +62,9 @@
     boot: true
     state: mounted
 
+- name: Adding ansible to the Docker group
+  shell: "sudo usermod -a -G docker ansible"
+
 - name: Stop Docker for migration
   shell: "sudo service docker stop"
 
