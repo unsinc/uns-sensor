@@ -9,7 +9,6 @@
 - name: Set default allow outbound
   shell: "sudo ufw default allow outgoing"
 
-
 - name: Add rate limiting for ssh
  community.general.ufw:
     rule: limit
