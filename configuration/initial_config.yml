@@ -42,7 +42,7 @@
     lv: sns
     size: 100%FREE
     state: absent
-  when: item.mount != '/dev/mapper/ubuntu--vg-sns' is failed    
+  when: (( item.mount == '/dev/mapper/ubuntu--vg-sns' )) is failed    
 
 - name: Create /sns directory
   file:
