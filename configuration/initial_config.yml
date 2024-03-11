@@ -42,7 +42,7 @@
     lv: sns
     size: 100%FREE
     state: absent
-  when: absible_mounts['device']['/dev/mapper/ubuntu--vg-sns'] is not defined    
+  when: item.mount != '/dev/mapper/ubuntu--vg-sns'    
 
 - name: Create /sns directory
   file:
