@@ -41,6 +41,7 @@
     vg: ubuntu-vg
     lv: sns
     size: 100%FREE
+  ignore_errors: true
 
 - name: Create /sns directory
   file:
