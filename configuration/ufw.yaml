@@ -31,6 +31,12 @@
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
   ignore_errors: true
 
+- name: Allow Https for the Fleet Server process
+  community.general.ufw:
+    rule: allow
+    port: 443
+    interface: ens160
+
 - name: Allow Syslog
   community.general.ufw:
     rule: allow
