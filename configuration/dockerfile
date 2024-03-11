@@ -19,5 +19,6 @@ RUN add-apt-repository -y ppa:oisf/suricata-stable
 RUN apt update && apt install -y suricata && apt install net-tools
 
 #Start the Suricata/Filebeat service when the container is started
+CMD && /bin/bash
 CMD systemctl enable suricata
-CMD systemctl start suricata -c /etc/suricata/suricata.yaml
+CMD systemctl start suricata 

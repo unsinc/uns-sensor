@@ -83,7 +83,7 @@
           }" > /etc/docker/daemon.json
 
 - name: Migrate the Docker data
-  shell: "sudo cp -a /var/lib/docker/ /sns/docker" 
+  shell: "sudo cp -a /var/lib/docker/ /sns/" 
 
 - name: Start Docker after migration
   shell: "sudo service docker start"
