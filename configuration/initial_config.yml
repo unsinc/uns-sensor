@@ -131,7 +131,7 @@
 - name: Copy the docker-compose file to the Docker directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/docker-compose.yml
-    dest: /sns/docker/docker-compose.yml
+    dest: /sns/docker/docker-compose.ymlq
 
 - name: Create Suricata directory if it does not exist
   file:
@@ -144,6 +144,13 @@
   file:
     path: /var/lib/suricata/rules
     state: directory
+    owner: root
+    group: suricata
+
+- name: Create Suricata Update-Rules directory if it does not exist
+  file:
+    path: /var/log/suricata/suricata_update.log
+    state: touch
     owner: root
     group: suricata
 
@@ -292,3 +299,4 @@
   shell: 
     cmd: | 
         sudo docker exec IDS /bin/bash -c "service suricata start"
+
