@@ -41,6 +41,7 @@
 
 - name: Allow Https for the Fleet Server process
   community.general.ufw:
+    delete: true
     rule: allow
     port: "443"
     direction: in
