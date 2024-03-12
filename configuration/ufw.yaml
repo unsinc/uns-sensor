@@ -68,6 +68,13 @@
     direction: in
     interface: ens160
 
+- name: Allow 8220 for the Fleet Server process
+  community.general.ufw:
+    rule: allow
+    port: "8220"
+    direction: in
+    interface: ens160
+
 - name: Allow 9001
   community.general.ufw:
     rule: allow
