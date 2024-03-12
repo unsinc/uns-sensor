@@ -20,3 +20,11 @@
     owner: root
     group: root
     mode: 0440
+
+- name: copy sudoers_docker
+  copy:
+    src: configuration/sudoers_docker
+    dest: /etc/sudoers.d/docker
+    owner: root
+    group: root
+    mode: 0440
