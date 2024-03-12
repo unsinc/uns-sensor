@@ -61,14 +61,3 @@
     fstype: ext4
     boot: true
     state: mounted
-
-- name: Collect the highest 5 interface names on the sensor
-  shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
-
-- name: Set all monitoring interfaces to optional
-  shell: "netplan set ethernets.{{ item }}.optional=true"
-  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
-
-- name: Dsiable DHCP on the SPAN interfaces
-  shell: "netplan set ethernets.{{ item }}.dhcp4=false"
-  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
