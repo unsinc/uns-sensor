@@ -1,6 +1,3 @@
-- name: Collect the highest 5 interface names on the sensor
-  shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
-
 - name: Collect the highest first interface name on the sensor
   shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | head -1 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/main_interface.txt"
 
@@ -37,16 +34,6 @@
 #    protocol: tcp
 #    direction: in
 #    interface: "{{ int_main['content'] | b64decode }}"
-
-- name: Deny outbound traffic on the SPAN ports
-  shell: "sudo ufw deny out on {{ item }}"
-  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
-  ignore_errors: true
-
-- name: Allow all inbound traffic on the SPAN ports
-  shell: "sudo ufw allow in on {{ item }}"
-  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
-  ignore_errors: true
 
 - name: Allow Https for the Fleet Server process
   community.general.ufw:
