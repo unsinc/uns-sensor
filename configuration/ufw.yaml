@@ -28,7 +28,7 @@
 #    port: ssh
 #    proto: tcp
 #    direction: in
-#    interface: "{{ int_main }}"
+#    interface: "{{ int_main['content'] | b64decode }}"
 
 - name: Allow SSH
   community.general.ufw:
