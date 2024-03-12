@@ -1,6 +1,14 @@
 - name: Collect the highest 5 interface names on the sensor
   shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
 
+- name: Collect the highest first interface name on the sensor
+  shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | head -1 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/main_interface.txt"
+
+- name: Grab the name of the main interface
+  stat:
+    path: /home/uns/main_interface.txt
+  register: int_main
+
 - name: Enable UFW
   community.general.ufw:
     state: enabled
@@ -20,7 +28,7 @@
     port: ssh
     proto: tcp
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Allow SSH
   community.general.ufw:
@@ -28,7 +36,7 @@
     port: ssh
     protocol: tcp
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Deny outbound traffic on the SPAN ports
   shell: "sudo ufw deny out on {{ item }}"
@@ -46,14 +54,14 @@
     rule: allow
     port: "443"
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Allow Syslog
   community.general.ufw:
     rule: allow
     port: "514"
     direction: in
-    interface: ens160
+    interface: eint_main
 
 - name: Allow Netflow
   community.general.ufw:
@@ -61,49 +69,49 @@
     port: "2055"
     protocol: udp
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Allow 6514
   community.general.ufw:
     rule: allow
     port: "6514"
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Allow 8220 for the Fleet Server process
   community.general.ufw:
     rule: allow
     port: "8220"
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Allow 9001
   community.general.ufw:
     rule: allow
     port: "9001"
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Allow 9003
   community.general.ufw:
     rule: allow
     port: "9003"
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Allow 9004
   community.general.ufw:
     rule: allow
     port: "9004"
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Allow 9004
   community.general.ufw:
     rule: allow
     port: "9514"
     direction: in
-    interface: ens160
+    interface: int_main
 
 - name: Set default deny inbound
   shell: "sudo ufw default deny incoming"
