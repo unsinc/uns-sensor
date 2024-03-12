@@ -1,0 +1,237 @@
+- name: Adding ansible to the Docker group
+  shell: "sudo usermod -a -G docker ansible"
+
+- name: Check if Docker has been migrated
+  stat:
+    path: /sns/docker
+  register: stat_tmp
+
+- name: Stop Docker for migration
+  shell: "sudo service docker stop"
+  when:
+    - stat_tmp.stat.exists|bool == false
+
+- name: Move the Docker Files 
+  shell: "sudo cp -a /var/lib/docker/ /sns/docker/"
+  when:
+    - stat_tmp.stat.exists|bool == false
+
+- name: Create docker directory if it does not exist
+  file:
+    path: /etc/docker 
+    state: directory
+    owner: root
+    group: root
+  when:
+    - stat_tmp.stat.exists|bool == false
+
+- name:  Move Docker to /sns
+  shell:
+    cmd: |
+         sudo echo "{
+              \"data-root\": \"/sns/docker\" 
+          }" > /etc/docker/daemon.json
+  when:
+    - stat_tmp.stat.exists|bool == false
+
+- name: Migrate the Docker data
+  shell: "sudo cp -a /var/lib/docker/ /sns/"
+  when:
+    - stat_tmp.stat.exists|bool == false 
+
+- name: Start Docker after migration
+  shell: "sudo service docker start"
+  when:
+    - stat_tmp.stat.exists|bool == false
+
+- name: Install Suricata-Update
+  shell: "pip install --upgrade suricata-update"
+
+- name: Upgrade all packages used by the sensor
+  apt: upgrade=dist force_apt_get=yes
+
+- name: Collect the highest 5 interface names on the sensor
+  shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | tail -5 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/span_interfaces.txt"
+
+- name: Set all monitoring interfaces to optional
+  shell: "netplan set ethernets.{{ item }}.optional=true"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+
+- name: Create Suricata Log directory if it does not exist
+  file:
+    path: /var/log/suricata 
+    state: directory
+    owner: docker
+    group: docker
+
+- name: Copy the docker-compose file to the Docker directory
+  copy:
+    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/docker-compose.yml
+    dest: /sns/docker/docker-compose.ymlq
+
+- name: Create Suricata directory if it does not exist
+  file:
+    path: /sns/IDS/suricata 
+    state: directory
+    owner: docker
+    group: docker
+
+- name: Create Suricata Update-Rules directory if it does not exist
+  file:
+    path: /var/lib/suricata/rules
+    state: directory
+    owner: root
+    group: suricata
+
+- name: Create Suricata Update-Rules directory if it does not exist
+  file:
+    path: /var/log/suricata/suricata_update.log
+    state: touch
+    owner: root
+    group: suricata
+
+# Uncomment the section below for IDS Multi-Tenency
+#- name: Create Suricata eth1 directory if it does not exist
+#  file:
+#    path: /sns/IDS/suricata/eth1/rules 
+#    state: directory
+#    owner: docker
+#    group: docker
+#
+#- name: Create Suricata eth2 Rules directory if it does not exist
+#  file:
+#    path: /sns/IDS/suricata/eth2/rules 
+#    state: directory
+#    owner: docker
+#    group: docker
+#
+#- name: Create Suricata eth3 Rules directory if it does not exist
+#  file:
+#    path: /sns/IDS/suricata/eth3/rules 
+#    state: directory
+#    owner: docker
+#    group: docker
+#
+#- name: Create Suricata eth4 Rules directory if it does not exist
+#  file:
+#    path: /sns/IDS/suricata/eth4/rules 
+#    state: directory
+#    owner: docker
+#    group: docker
+#
+#- name: Create Suricata eth5 Rules directory if it does not exist
+#  file:
+#    path: /sns/IDS/suricata/eth5/rules 
+#    state: directory
+#    owner: docker
+#    group: docker
+
+- name: Create Suricata Update-Rules Update directory if it does not exist
+  file:
+    path: /var/lib/suricata/update
+    state: directory
+    owner: root
+    group: suricata
+
+- name: Copy the Dockerfile
+  copy:
+    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/dockerfile
+    dest: /sns/docker/dockerfile
+
+- name: Copy the Suricata Configuration file to the Suricata directory
+  copy:
+    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/suricata.yaml
+    dest: /sns/IDS/suricata/suricata.yaml 
+
+# Uncomment the section below for IDS Multi-Tenency
+#- name: Copy the Suricata eth1 Configuration file to the Suricata directory
+#  copy:
+#    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/eth1.yaml
+#    dest: /sns/IDS/suricata/eth1/eth1.yaml
+#
+#- name: Copy the Suricata eth2 Configuration file to the Suricata directory
+#  copy:
+#    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/eth2.yaml
+#    dest: /sns/IDS/suricata/eth2/eth2.yaml
+#
+#- name: Copy the Suricata eth3 Configuration file to the Suricata directory
+#  copy:
+#    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/eth3.yaml
+#    dest: /sns/IDS/suricata/eth3/eth3.yaml
+#
+#- name: Copy the Suricata eth4 Configuration file to the Suricata directory
+#  copy:
+#    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/eth4.yaml
+#    dest: /sns/IDS/suricata/eth4/eth4.yaml
+#
+#- name: Copy the Suricata eth5 Configuration file to the Suricata directory
+#  copy:
+#    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/eth5.yaml
+#    dest: /sns/IDS/suricata/eth5/eth5.yaml
+
+- name: Copy the Suricata Classification file to the Suricata directory
+  copy:
+    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/classification.config
+# Comment the line below in IDS Multi-Tenency
+    dest: "/sns/IDS/suricata/classification.config"
+# Uncomment the section below for IDS Multi-Tenency
+#    dest: "/sns/IDS/suricata/{{ item }}/classification.config"
+#  with_items:
+#      - eth1
+#      - eth2
+#      - eth3
+#      - eth4
+#      - eth5
+
+- name: Copy the Suricata Reference file to the Suricata directory
+  copy:
+    src: ~/.ansible/pull/{{ansible_nodename}}/configuration/reference.config
+# Comment the line below in IDS Multi-Tenency
+    dest: "/sns/IDS/suricata/reference.config"
+# Uncomment the section below for IDS Multi-Tenency
+#    dest: "/sns/IDS/suricata/{{ item }}/reference.config"
+#  with_items:
+#      - eth1
+#      - eth2
+#      - eth3
+#      - eth4
+#      - eth5
+
+- name: Create the needed span interfaces
+  shell: "docker network create -d macvlan -o macvlan_mode=passthru -o parent={{ item }} {{ item }}_span"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+  ignore_errors: true
+
+- name: Adding ansible to the Suricata group
+  shell: "sudo usermod -a -G suricata ansible"
+
+- name: Get the initial set of Suricata Rules
+  shell: "suricata-update"
+
+- name: Copy the Suricata Rules file to the Suricata eth1 Rules directory
+  copy:
+    src: /var/lib/suricata/rules/
+# Comment the line below in IDS Multi-Tenency
+    dest: "/sns/IDS/suricata/rules/"
+# Uncomment the section below for IDS Multi-Tenency
+#    dest: "/sns/IDS/suricata/{{ item }}/rules/"
+#  with_items:
+#      - eth1
+#      - eth2
+#      - eth3
+#      - eth4
+#      - eth5
+
+- name: Run the docker container
+  shell: 
+    cmd: |
+        sudo docker compose -f /sns/docker/docker-compose.yml up -d 
+
+- name: Attach the new SPAN interfaces to the IDS
+  shell: "docker network connect {{ item }}_span IDS"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+
+- name: Start Suricata
+  shell: 
+    cmd: | 
+        sudo docker exec IDS /bin/bash -c "service suricata start"
