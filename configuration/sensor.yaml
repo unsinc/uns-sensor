@@ -65,6 +65,14 @@
   shell: "netplan set ethernets.{{ item }}.dhcp6=false"
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
 
+- name: Deny outbound traffic on the SPAN ports
+  shell: "sudo ufw deny out on {{ item }}"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+
+- name: Allow all inbound traffic on the SPAN ports
+  shell: "sudo ufw allow in on {{ item }}"
+  loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
+  
 - name: Create Suricata Log directory if it does not exist
   file:
     path: /var/log/suricata 
