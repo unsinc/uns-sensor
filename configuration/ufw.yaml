@@ -20,7 +20,6 @@
 
 - name: Add rate limiting for ssh
   community.general.ufw:
-    delete: true
     rule: limit
     port: ssh
     proto: tcp
