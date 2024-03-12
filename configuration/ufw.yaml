@@ -5,7 +5,7 @@
   shell: "ansible localhost -m setup -a filter=ansible_interfaces | sort | grep -e ens -e enp | head -1 | sed 's/ //g' | sed 's/\"//g' | sed 's/,//g' > /home/uns/main_interface.txt"
 
 - name: Grab the name of the main interface
-  lookup: "/home/uns/main_interface.txt"
+  command:: cat /home/uns/main_interface.txt
   register: int_main
 
 - name: Enable UFW
