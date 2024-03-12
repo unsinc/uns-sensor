@@ -21,22 +21,22 @@
 - name: Set default allow outbound
   shell: "sudo ufw default allow outgoing"
 
-#- name: Add rate limiting for ssh
-#  community.general.ufw:
-#    delete: true
-#    rule: limit
-#    port: ssh
-#    proto: tcp
-#    direction: in
-#    interface: "{{ int_main['content'] | b64decode }}"
-
-- name: Allow SSH
+- name: Add rate limiting for ssh
   community.general.ufw:
-    rule: allow
+    delete: true
+    rule: limit
     port: ssh
-    protocol: tcp
+    proto: tcp
     direction: in
     interface: "{{ int_main['content'] | b64decode }}"
+
+#- name: Allow SSH
+#  community.general.ufw:
+#    rule: allow
+#    port: ssh
+#    protocol: tcp
+#    direction: in
+#    interface: "{{ int_main['content'] | b64decode }}"
 
 - name: Deny outbound traffic on the SPAN ports
   shell: "sudo ufw deny out on {{ item }}"
