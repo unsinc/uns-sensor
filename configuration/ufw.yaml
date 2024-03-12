@@ -6,7 +6,7 @@
 
 - name: Grab the name of the main interface
   slurp:
-      scr: /home/uns/main_interface.txt
+      src: /home/uns/main_interface.txt
   register: int_main
 
 - name: Enable UFW
