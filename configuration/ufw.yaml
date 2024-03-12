@@ -21,14 +21,14 @@
 - name: Set default allow outbound
   shell: "sudo ufw default allow outgoing"
 
-- name: Add rate limiting for ssh
-  community.general.ufw:
-    delete: true
-    rule: limit
-    port: ssh
-    proto: tcp
-    direction: in
-    interface: {{ int_main }}
+#- name: Add rate limiting for ssh
+#  community.general.ufw:
+#    delete: true
+#    rule: limit
+#    port: ssh
+#    proto: tcp
+#    direction: in
+#    interface: "{{ int_main }}"
 
 - name: Allow SSH
   community.general.ufw:
@@ -36,7 +36,7 @@
     port: ssh
     protocol: tcp
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Deny outbound traffic on the SPAN ports
   shell: "sudo ufw deny out on {{ item }}"
@@ -54,14 +54,14 @@
     rule: allow
     port: "443"
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Allow Syslog
   community.general.ufw:
     rule: allow
     port: "514"
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Allow Netflow
   community.general.ufw:
@@ -69,49 +69,49 @@
     port: "2055"
     protocol: udp
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Allow 6514
   community.general.ufw:
     rule: allow
     port: "6514"
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Allow 8220 for the Fleet Server process
   community.general.ufw:
     rule: allow
     port: "8220"
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Allow 9001
   community.general.ufw:
     rule: allow
     port: "9001"
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Allow 9003
   community.general.ufw:
     rule: allow
     port: "9003"
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Allow 9004
   community.general.ufw:
     rule: allow
     port: "9004"
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Allow 9004
   community.general.ufw:
     rule: allow
     port: "9514"
     direction: in
-    interface: {{ int_main }}
+    interface: "{{ int_main }}"
 
 - name: Set default deny inbound
   shell: "sudo ufw default deny incoming"
