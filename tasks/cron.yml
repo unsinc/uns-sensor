@@ -5,6 +5,13 @@
     minute: "10"
     job: "sudo ansible-pull -U https://github.com/unsinc/uns-sensor.git 2>&1 | logger -t Sensor Configuration Validation"
 
+- name: Start Sricata
+  cron: 
+    user: docker
+    name: Starting Suricata
+    special_time: reboot
+    job: "docker exec -it IDS /bin/bash service suricata start 2>&1 | logger -t Starting Suricata"
+
 - name: update the suricata rules
   cron:
     user: suricata
