@@ -21,13 +21,13 @@
     direction: in
     interface: ens160
 
-#- name: Allow SSH
-#  community.general.ufw:
-#    rule: allow
-#    port: ssh
-#    protocol: tcp
-#    direction: in
-#    interface: ens160
+- name: Allow SSH
+  community.general.ufw:
+    rule: allow
+    port: ssh
+    protocol: tcp
+    direction: in
+    interface: ens160
 
 - name: Deny outbound traffic on the SPAN ports
   shell: "sudo ufw deny out on {{ item }}"
