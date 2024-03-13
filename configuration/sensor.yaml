@@ -233,7 +233,7 @@
   shell: "sudo usermod -a -G suricata ansible"
 
 - name: Update the list of community Suricata Rules
-  shell: "ssuricata-update --suricata-version 7.0.3 update-sources"
+  shell: "suricata-update --suricata-version 7.0.3 update-sources"
 
 - name: Enabling OISF Suricata Rules
   shell: "suricata-update --suricata-version 7.0.3 enable-source oisf/trafficid"
