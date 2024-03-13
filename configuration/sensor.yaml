@@ -251,7 +251,12 @@
   shell: "docker network connect {{ item }}_span IDS"
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
 
-- name: Start Suricata
+- name: Enable Suricata
   shell: 
     cmd: | 
         sudo docker exec IDS /bin/bash -c "systemctl enable suricata"
+
+- name: Start Suricata
+  shell: 
+    cmd: | 
+        sudo docker exec IDS /bin/bash -c "service suricata start"
