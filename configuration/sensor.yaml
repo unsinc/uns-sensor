@@ -259,7 +259,7 @@
 - name: Get the initial set of Suricata Rules
   shell: "suricata-update --suricata-version 7.0.3"
 
-- name: Copy the Suricata Rules file to the Suricata eth1 Rules directory
+- name: Copy the Suricata Rules file to the Suricata Rules directory
   copy:
     src: /var/lib/suricata/rules/
 # Comment the line below in IDS Multi-Tenency
