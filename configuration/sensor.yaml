@@ -232,8 +232,32 @@
 - name: Adding ansible to the Suricata group
   shell: "sudo usermod -a -G suricata ansible"
 
+- name: Update the list of community Suricata Rules
+  shell: "ssuricata-update --suricata-version 7.0.3 update-sources"
+
+- name: Enabling OISF Suricata Rules
+  shell: "suricata-update --suricata-version 7.0.3 enable-source oisf/trafficid"
+
+- name: Enabling Abuse.ch SSL Suricata Rules
+  shell: "suricata-update --suricata-version 7.0.3 enable-source sslbl/ssl-fp-blacklist"
+
+- name: Enabling Abuse.ch SSL JA3 Fingerprint Suricata Rules
+  shell: "suricata-update --suricata-version 7.0.3 enable-source sslbl/ja3-fingerprints"
+
+- name: Enabling Emerging Threats Net ERA Suricata Rules
+  shell: "suricata-update --suricata-version 7.0.3 enable-source etnetera/aggressive"
+
+- name: Enabling Threat Hunting Suricata Rules
+  shell: "suricata-update --suricata-version 7.0.3 enable-source tgreen/hunting"
+
+- name: Enabling Malware List Suricata Rules
+  shell: "suricata-update --suricata-version 7.0.3 enable-source malsilo/win-malware"
+
+- name: Enabling PAW Patrules Suricata Rules
+  shell: "suricata-update --suricata-version 7.0.3 enable-source pawpatrules"
+
 - name: Get the initial set of Suricata Rules
-  shell: "suricata-update"
+  shell: "suricata-update --suricata-version 7.0.3"
 
 - name: Copy the Suricata Rules file to the Suricata eth1 Rules directory
   copy:
