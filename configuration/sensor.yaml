@@ -105,7 +105,14 @@
   file:
     path: /var/log/suricata/suricata_update.log
     state: touch
-    owner: root
+    owner: suricata
+    group: suricata
+
+- name: Create Suricata Update-Rules directory if it does not exist
+  file:
+    path: /etc/suricata
+    state: directory
+    owner: suricata
     group: suricata
 
 # Uncomment the section below for IDS Multi-Tenency
