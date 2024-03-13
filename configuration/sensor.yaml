@@ -253,10 +253,8 @@
 
 - name: Enable Suricata
   shell: 
-    cmd: | 
-        sudo docker exec IDS /bin/bash -c "systemctl enable suricata"
+    cmd: sudo docker exec IDS /bin/bash -c "systemctl enable suricata"
 
 - name: Start Suricata
   shell: 
-    cmd: | 
-        sudo docker exec IDS /bin/bash -c "service suricata start"
+    cmd: sudo docker exec IDS /bin/bash -c "service suricata start"
