@@ -250,4 +250,4 @@
 - name: Start Suricata
   shell: 
     cmd: | 
-        sudo docker exec IDS /bin/bash -c "service suricata start"
+        sudo docker exec -it IDS /bin/bash -c "systemctl enable suricata"
