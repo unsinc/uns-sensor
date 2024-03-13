@@ -10,7 +10,7 @@
     user: docker
     name: Starting Suricata
     special_time: reboot
-    job: "sleep 120 && docker exec -it IDS /bin/bash service suricata start 2>&1 | logger -t Starting Suricata"
+    job: "sleep 120 && docker exec IDS /bin/bash -c 'service suricata start' 2>&1 | logger -t Starting Suricata"
 
 - name: update the suricata rules
   cron:
@@ -33,7 +33,7 @@
     name: Suricata Restart
     minute: "45"
     hour: "12"
-    job: "docker exec -it IDS /bin/bash service suricata restart 2>&1 | logger -t Suricata Applying the most recent IDS Rules"
+    job: "docker exec IDS /bin/bash -c 'service suricata restart' 2>&1 | logger -t Suricata Applying the most recent IDS Rules"
 
 # Uncomment the section below in IDS Multi-Tenency
 #- name: update the eth1 suricata rules
