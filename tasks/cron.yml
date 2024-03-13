@@ -17,7 +17,7 @@
     user: ansible
     name: "Suricata Rule Update"
     hour: "12"
-    job: "sudo suricata-update  --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log 2>&1 | logger -t Suricata Rules Update"
+    job: "sudo suricata-update --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log 2>&1 | logger -t Suricata Rules Update"
 
 - name: Migrate the suricata rules to the suricata directory
   cron:
