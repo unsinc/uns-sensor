@@ -12,17 +12,18 @@
     special_time: reboot
     job: "sleep 120 && docker exec IDS /bin/bash -c 'service suricata start' >/dev/null 2>&1 | logger -t Starting Suricata"
 
-- name: Update the Surcata Rules 
+- name: Update the Surcata Rule Sources
   cron:
     user: ansible
     name: "Suricata Rule Update"
     hour: "12"
     job: "sudo suricata-update --suricata-version 7.0.3 update-sources >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update"
 
-- name: update the suricata rules
+- name: Update the Suricata Rules
   cron:
     user: ansible
     name: "Suricata Rule Update"
+    minute: "5"
     hour: "12"
     job: "sudo suricata-update --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update"
 
