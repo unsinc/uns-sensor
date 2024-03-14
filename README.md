@@ -2,7 +2,7 @@
  
 ## This is a repository that will install the uns-sensor when used with ansible-get
 
-### Run the command ```sudo ansible-pull -U https://github.com/unsinc/uns-sensor.git``` to have the following done on the system
+### Run the command ```sudo ansible-pull -U https://github.com/unsinc/uns-sensor.git``` to have the following done on the system:
 
 1.  This will install the following packages onto an Ubuntu/Debian System
   - auditd
@@ -42,4 +42,4 @@
 1.  There are several files downloaded to the system to help condifure the IDS container or in prerperation for multi-tenancy use in Suricata
 	- As of right now I am not able to get multi-tenancy to function in Suricata usng the device command.  So all SPAN interfaces are using the same main suricata.yaml file. 
 	- The additional eth<#>.yaml files are in preperation for multi-tenancy
-1.  The agent will be installed manually on the sns partition oafter this has been run
+1.  The agent will be installed manually on the sns partition oafter the initial ansible-pull has been run
