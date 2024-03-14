@@ -38,7 +38,7 @@
 	- pawpatrules    
 
 1.  The system looks to keep itself up-to-date with security updates
-	1.  **This system will reboot itself if required by the updates @ 08:00 UTC**
+	-  **This system will reboot itself if required by the updates @ 08:00 UTC**
 1.  There are several files downloaded to the system to help condifure the IDS container or in prerperation for multi-tenancy use in Suricata
 	- As of right now I am not able to get multi-tenancy to function in Suricata usng the device command.  So all SPAN interfaces are using the same main suricata.yaml file. 
 	- The additional eth<#>.yaml files are in preperation for multi-tenancy
