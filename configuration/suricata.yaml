@@ -689,24 +689,28 @@ af-packet:
     tpacket-v3: yes
     cluster-id: 92
     cluster-type: cluster_flow
+    max-pending-packets: 10000
   - interface: eth3
     threads: auto
     use-mmap: yes
     tpacket-v3: yes
     cluster-id: 93
     cluster-type: cluster_flow
+    max-pending-packets: 10000
   - interface: eth4
     threads: auto
     use-mmap: yes
     tpacket-v3: yes
     cluster-id: 94
     cluster-type: cluster_flow
+    max-pending-packets: 10000
   - interface: eth5
     threads: auto
     use-mmap: yes
     tpacket-v3: yes
     cluster-id: 95
     cluster-type: cluster_flow
+    max-pending-packets: 10000
 
 # Linux high speed af-xdp capture support
 af-xdp:
