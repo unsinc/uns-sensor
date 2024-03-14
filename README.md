@@ -17,9 +17,10 @@
   - docker-compose-plugin
   - python3-pip
 
-1.  This will use PIP to install suricata-update on the main system
+1.  This will use PIP to install suricata-update on the host
 1.  This will create a new partition called sns that will be used for docker and the agent
-1.  This will create a docker container called IDS to run Suricata and configure the remaining 5 ports as SPAN ports to the IDS container and the appropriate system users
+1.  This will create a docker container called IDS to run Suricata and configure the remaining 5 ports as SPAN ports for the IDS container
+1.  This will create the appropriate system users needed for ansible, docker, and suricata
 1.  Several Cron Jobs are added to keep the Suricata rules current
 	-  Sensor Configuration: @ Every Hour at 10 after the hour every day
 	-  Starting Suricata: @ Startup or Reboot after 2 minutes
