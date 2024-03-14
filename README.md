@@ -1,6 +1,6 @@
 # uns-sensor
  
-## This is a repository that will install the uns-sensor when used with ansible-get
+## This is a repository that will install the uns-sensor when used with ansible-pull
 
 ### Run the command ```sudo ansible-pull -U https://github.com/unsinc/uns-sensor.git``` to have the following done on the system:
 
