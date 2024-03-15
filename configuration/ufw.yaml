@@ -64,6 +64,13 @@
     direction: in
     interface: "{{ int_main['content'] | b64decode }}"
 
+- name: Allow 8080 for default custom udp and tcp logs
+  community.general.ufw:
+    rule: allow
+    port: "8080"
+    direction: in
+    interface: "{{ int_main['content'] | b64decode }}"
+
 - name: Allow 8220 for the Fleet Server process
   community.general.ufw:
     rule: allow
