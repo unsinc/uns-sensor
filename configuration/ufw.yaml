@@ -113,6 +113,13 @@
     direction: in
     interface: "{{ int_main['content'] | b64decode }}"
 
+- name: Allow 9512
+  community.general.ufw:
+    rule: allow
+    port: "9512"
+    direction: in
+    interface: "{{ int_main['content'] | b64decode }}"
+
 - name: Allow 9514
   community.general.ufw:
     rule: allow
