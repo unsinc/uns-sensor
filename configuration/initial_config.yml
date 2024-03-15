@@ -35,6 +35,7 @@
       - docker-buildx-plugin
       - docker-compose-plugin
       - python3-pip
+      - lm-sensors
     
 - name: Create a logical volume sns with the rest of the available space
   lvol:
