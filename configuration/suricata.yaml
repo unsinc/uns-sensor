@@ -683,6 +683,14 @@ af-packet:
 
   # Put default values here. These will be used for an interface that is not
   # in the list above.
+  - interface: eth1
+    threads: auto
+    use-mmap: yes
+    tpacket-v3: yes
+    cluster-id: 91
+    cluster-type: cluster_flow
+    max-pending-packets: 10000
+    tpacket-v3: yes
   - interface: eth2
     threads: auto
     use-mmap: yes
