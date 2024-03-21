@@ -1,5 +1,5 @@
 - name: Check if Suricata is running
-  shell: pgrep suricata
+  shell: pgrep docker
   ignore_errors: yes
   changed_when: false
   register: service_suricata_status
