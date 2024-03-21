@@ -101,7 +101,7 @@
     owner: root
     group: suricata
 
-- name: Create Suricata Update-Rules directory if it does not exist
+- name: Create the Suricata Update log file if it does not exist
   file:
     path: /var/log/suricata/suricata_update.log
     state: touch
