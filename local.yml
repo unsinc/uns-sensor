@@ -15,5 +15,5 @@
     - include_tasks: tasks/update.yml
     - include_tasks: configuration/ufw.yaml
     - include_tasks: configuration/initial_config.yml
-    - include_tasks: configuration/sensor.yaml
     - include_tasks: tasks/suricata_check.yml
+    - include_tasks: configuration/sensor.yaml
