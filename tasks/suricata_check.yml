@@ -1,11 +1,18 @@
-- name: "Get Suricata PID"
-  shell: >
-    echo -n
-    $(pgrep suricata)
-  register: suricata_procs
+- name: Check if Suricata is running
+  shell: ps -ef | grep -i "suricata" | grep -v grep
+  ignore_errors: yes
+  changed_when: false
+  register: service_suricata_status
 
-- name: "Checking is Suricata is running and starting the Suricata process if it has stopped"
-  shell: 
-    cmd: sudo docker exec IDS /bin/bash -c "service suricata start"
-  when:
-    - suricata_procs.stat.exists|bool == false
+- name: Report status of Suricata
+  fail:
+    msg: |
+      Service Suricata is not running.
+      Return code from `ps -ef | grep -i "suricata" | grep -v grep`:
+      {{ service_namenode_status.rc }}
+  when: service_namenode_status.rc != 0
+  register: service_suricata_start
+
+- name: Restart Suricata
+  command: sudo docker exec IDS /bin/bash -c "service suricata start"
+  when: service_namenode_status.rc != 0
