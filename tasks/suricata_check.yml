@@ -6,4 +6,4 @@
 
 - name: Restart Suricata after a failure
   shell: sudo docker exec IDS /bin/bash -c "service suricata start"
-  when: service_namenode_status.rc == 1
+  when: service_suricata_status.rc == 1
