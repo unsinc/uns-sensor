@@ -4,7 +4,7 @@
     $(pgrep suricata)
   register: suricata_procs
 
-- name: Start Suricata Again
+- name: "Checking is Suricata is running and starting the Suricata process if it has stopped"
   shell: 
     cmd: sudo docker exec IDS /bin/bash -c "service suricata start"
   when:
