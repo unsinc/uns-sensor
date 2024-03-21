@@ -1,9 +1,0 @@
-- name: Check if Suricata is running
-  shell: pgrep suricata
-  ignore_errors: yes
-  changed_when: false
-  register: service_suricata_status
-
-- name: Restart Suricata after a failure
-  shell: sudo docker exec IDS /bin/bash -c "service suricata start"
-  when: service_suricata_status.rc == 1

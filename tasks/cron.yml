@@ -59,6 +59,13 @@
     hour: "12"
     job: "docker exec IDS /bin/bash -c 'service suricata restart' >/dev/null 2>&1 | logger -t Suricata Applying the most recent IDS Rules"
 
+- name: Check that Sricata is running
+  cron: 
+    user: docker
+    name: Checking that Suricata is running
+    minute: "*/10"
+    job: "bash /sns/docker/suricata_check.sh' >/dev/null 2>&1 | logger -t Suricata Checking if service is running"
+
 # Uncomment the section below in IDS Multi-Tenency
 #- name: update the eth1 suricata rules
 #  cron:
