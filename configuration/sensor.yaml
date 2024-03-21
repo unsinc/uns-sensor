@@ -115,6 +115,13 @@
     owner: suricata
     group: suricata
 
+- name: Create Suricata file
+  copy:
+    src: ~/.ansible/pull/{{ansible_nodename}}/tasks/suricata_check.sh
+    dest: /sns/docker/suricata_check.sh
+    owner: docker
+    group: docker
+
 # Uncomment the section below for IDS Multi-Tenency
 #- name: Create Suricata eth1 directory if it does not exist
 #  file:
