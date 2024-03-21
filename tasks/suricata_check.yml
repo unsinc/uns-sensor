@@ -1,0 +1,11 @@
+- name: "Get Suricata PID"
+  shell: >
+    echo -n
+    $(pgrep suricata)
+  register: suricata_procs
+
+- name: Start Suricata Again
+  shell: 
+    cmd: sudo docker exec IDS /bin/bash -c "service suricata start"
+  when:
+    - suricata_procs.stat.exists|bool == false
