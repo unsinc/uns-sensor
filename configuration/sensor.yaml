@@ -118,7 +118,7 @@
 - name: Create Suricata file
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/tasks/suricata_check.sh
-    dest: /sns/docker/suricata_check.sh
+    dest: /sns/IDS/suricata/suricata_check.sh
     owner: docker
     group: docker
 

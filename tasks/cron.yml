@@ -64,7 +64,7 @@
     user: docker
     name: Checking that Suricata is running
     minute: "*/10"
-    job: "bash /sns/docker/suricata_check.sh >/dev/null 2>&1 | logger -t Suricata Checking if service is running"
+    job: "bash /sns/IDS/suricata/suricata_check.sh >/dev/null 2>&1 | logger -t Suricata Checking if service is running"
 
 # Uncomment the section below in IDS Multi-Tenency
 #- name: update the eth1 suricata rules
