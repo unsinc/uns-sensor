@@ -3,7 +3,7 @@
     user: ansible
     name: "Sensor Configuration"
     minute: "10"
-    job: "sudo ansible-pull -o -U https://github.com/unsinc/uns-sensor.git >/dev/null 2>&1 | logger -t Sensor Configuration Validation"
+    job: "sudo ansible-pull -C lab -o -U https://github.com/unsinc/uns-sensor.git >/dev/null 2>&1 | logger -t Sensor Configuration Validation"
 
 - name: Start Sricata
   cron: 
