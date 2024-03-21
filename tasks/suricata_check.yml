@@ -4,15 +4,6 @@
   changed_when: false
   register: service_suricata_status
 
-- name: Report status of Suricata
-  fail:
-    msg: |
-      Service Suricata is not running.
-      Return code from `ps -ef | grep -i "suricata" | grep -v grep`:
-      {{ service_namenode_status.rc }}
-  when: service_namenode_status.rc != 0
-  register: service_suricata_start
-
-- name: Restart Suricata
+- name: Restart Suricata after a failure
   command: sudo docker exec IDS /bin/bash -c "service suricata start"
-  when: service_namenode_status.rc != 0
+  when: service_namenode_status.rc == 1
