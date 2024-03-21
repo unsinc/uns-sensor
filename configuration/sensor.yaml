@@ -115,7 +115,7 @@
     owner: suricata
     group: suricata
 
-- name: Create Suricata file
+- name: Create Suricata Check script
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/tasks/suricata_check.sh
     dest: /sns/IDS/suricata/suricata_check.sh
