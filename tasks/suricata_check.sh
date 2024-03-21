@@ -1,5 +1,5 @@
 #!/bin/bash
-ps -ef | grep suricata | grep -v grep | grep -v suricata_check.sh
+ps -ef | grep suricata | grep -v grep | grep -v suricata_check
 if [ $? -eq 0 ]; then
   echo "Process is running."
 else
