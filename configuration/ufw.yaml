@@ -34,14 +34,6 @@
 #    direction: in
 #    interface: "{{ int_main['content'] | b64decode }}"
 
-- name: Allow Https for the Fleet Server process
-  community.general.ufw:
-    delete: true
-    rule: allow
-    port: "443"
-    direction: in
-    interface: "{{ int_main['content'] | b64decode }}"
-
 - name: Allow Syslog
   community.general.ufw:
     rule: allow
