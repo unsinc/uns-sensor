@@ -101,7 +101,7 @@
     owner: root
     group: suricata
 
-- name: Create Suricata Update-Rules directory if it does not exist
+- name: Create the Suricata Update log file if it does not exist
   file:
     path: /var/log/suricata/suricata_update.log
     state: touch
@@ -114,6 +114,13 @@
     state: directory
     owner: suricata
     group: suricata
+
+- name: Create Suricata Check script
+  copy:
+    src: ~/.ansible/pull/{{ansible_nodename}}/tasks/suricata_check.sh
+    dest: /sns/IDS/suricata/suricata_check.sh
+    owner: docker
+    group: docker
 
 # Uncomment the section below for IDS Multi-Tenency
 #- name: Create Suricata eth1 directory if it does not exist
