@@ -280,6 +280,19 @@
 #      - eth4
 #      - eth5
 
+# Patching the IDS Container to eliminate a network loop
+- name: Stop the old IDS container
+  shell: 
+    cmd: |
+        sudo docker stop IDS
+
+- name: Delete the old IDS container
+  shell: 
+    cmd: |
+        sudo docker remove IDS
+#########################################################
+
+
 - name: Run the docker container
   shell: 
     cmd: |
