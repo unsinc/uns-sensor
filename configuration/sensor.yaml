@@ -285,11 +285,13 @@
   shell: 
     cmd: |
         sudo docker stop IDS
+  ignore_errors: true
 
 - name: Delete the old IDS container
   shell: 
     cmd: |
         sudo docker remove IDS
+  ignore_errors: true
 #########################################################
 
 
