@@ -12,4 +12,4 @@ services:
     volumes:
       - /var/log/suricata:/var/log/suricata
       - /sns/IDS/suricata:/etc/suricata
-    command: iptables -I FORWARD -i eth1 -j NFQUEUE && sudo iptables -I FORWARD -i eth2 -j NFQUEUE && sudo iptables -I FORWARD -i eth3 -j NFQUEUE && sudo iptables -I FORWARD -i eth4 -j NFQUEUE && sudo iptables -I FORWARD -i eth5 -j NFQUEUE
+    command: apt-get update && apt-get install iptables && iptables -I FORWARD -i eth1 -j NFQUEUE && sudo iptables -I FORWARD -i eth2 -j NFQUEUE && sudo iptables -I FORWARD -i eth3 -j NFQUEUE && sudo iptables -I FORWARD -i eth4 -j NFQUEUE && sudo iptables -I FORWARD -i eth5 -j NFQUEUE
