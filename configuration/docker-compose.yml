@@ -4,9 +4,8 @@ services:
     image: suricata
     hostname: IDS
     container_name: IDS
-    securityContext:
-      capabilities:
-        add: ["NET_ADMIN"]
+    cap_add:
+        - NET_ADMIN
     build:
       context: /sns/docker
       dockerfile: dockerfile
