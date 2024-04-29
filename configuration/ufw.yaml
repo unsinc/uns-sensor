@@ -120,7 +120,7 @@
     interface: "{{ int_main['content'] | b64decode }}"
 
 - name: Allow 9555
-   community.general.ufw:
+   ommunity.general.ufw:
     rule: allow
     port: "9555"
     direction: in
