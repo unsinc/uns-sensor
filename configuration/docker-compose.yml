@@ -1,4 +1,3 @@
-version: '3.7'
 services:
   IDS:
     image: suricata
@@ -13,4 +12,4 @@ services:
     volumes:
       - /var/log/suricata:/var/log/suricata
       - /sns/IDS/suricata:/etc/suricata
-    command: sudo iptables -I FORWARD -i eth1 -j NFQUEUE && sudo iptables -I FORWARD -i eth2 -j NFQUEUE && sudo iptables -I FORWARD -i eth3 -j NFQUEUE && sudo iptables -I FORWARD -i eth4 -j NFQUEUE && sudo iptables -I FORWARD -i eth5 -j NFQUEUE
+    command: iptables -I FORWARD -i eth1 -j NFQUEUE && sudo iptables -I FORWARD -i eth2 -j NFQUEUE && sudo iptables -I FORWARD -i eth3 -j NFQUEUE && sudo iptables -I FORWARD -i eth4 -j NFQUEUE && sudo iptables -I FORWARD -i eth5 -j NFQUEUE
