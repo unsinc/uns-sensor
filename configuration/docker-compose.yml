@@ -3,14 +3,13 @@ services:
     image: suricata
     hostname: IDS
     container_name: IDS
+    securityContext:
+      capabilities:
+        add: ["NET_ADMIN"]
     build:
       context: /sns/docker
       dockerfile: dockerfile
     restart: always
-    securityContext:
-      privileged: true
-      capabilities:
-        add: ["NET_ADMIN"]
     volumes:
       - /var/log/suricata:/var/log/suricata
       - /sns/IDS/suricata:/etc/suricata
