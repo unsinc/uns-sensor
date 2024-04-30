@@ -302,7 +302,7 @@
   name: Clear out old docker system chache
   shell: 
     cmd: |
-         sudo docker system prune
+         sudo docker system prune -a -f
   ignore_errors: true
 #########################################################
 
