@@ -292,6 +292,12 @@
     cmd: |
         sudo docker remove IDS
   ignore_errors: true
+
+- name: Delete the old Suricata Image
+  shell: 
+    cmd: |
+        sudo docker image rm suricata
+  ignore_errors: true
 #########################################################
 
 
