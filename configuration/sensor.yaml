@@ -298,6 +298,12 @@
     cmd: |
         sudo docker image rm suricata
   ignore_errors: true
+
+  name: Clear out old docker system chache
+  shell: 
+    cmd: |
+         sudo docker system prune
+  ignore_errors: true
 #########################################################
 
 
