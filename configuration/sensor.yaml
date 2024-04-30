@@ -310,12 +310,24 @@
   shell: "docker network connect {{ item }}_span IDS"
   loop: "{{ lookup('file', '/home/uns/span_interfaces.txt').splitlines() }}"
 
-- name: Enable Suricata iptable rules
+- name: Enable Suricata iptable rules eth1
   shell: 
     cmd: sudo docker exec IDS /bin/bash -c "iptables -I FORWARD -i eth1 -j NFQUEUE"
+
+- name: Enable Suricata iptable rules eth2
+  shell: 
     cmd: sudo docker exec IDS /bin/bash -c "iptables -I FORWARD -i eth2 -j NFQUEUE"
+
+- name: Enable Suricata iptable rules eth3
+  shell: 
     cmd: sudo docker exec IDS /bin/bash -c "iptables -I FORWARD -i eth3 -j NFQUEUE"
+
+- name: Enable Suricata iptable rules eth4
+  shell: 
     cmd: sudo docker exec IDS /bin/bash -c "iptables -I FORWARD -i eth4 -j NFQUEUE"
+
+- name: Enable Suricata iptable rules eth5
+  shell: 
     cmd: sudo docker exec IDS /bin/bash -c "iptables -I FORWARD -i eth5 -j NFQUEUE"
 
 - name: Enable Suricata
