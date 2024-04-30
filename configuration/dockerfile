@@ -19,7 +19,7 @@ RUN add-apt-repository -y ppa:oisf/suricata-stable
 RUN apt update && apt install -y suricata 
 
 # Add the iptables rules for suricata
-RUN iptables -I FORWARD -i eth1 -j NFQUEUE && iptables -I FORWARD -i eth2 -j NFQUEUE && iptables -I FORWARD -i eth3 -j NFQUEUE && iptables -I FORWARD -i eth4 -j NFQUEUE && iptables -I FORWARD -i eth5 -j NFQUEUE 
+CMD iptables -I FORWARD -i eth1 -j NFQUEUE && iptables -I FORWARD -i eth2 -j NFQUEUE && iptables -I FORWARD -i eth3 -j NFQUEUE && iptables -I FORWARD -i eth4 -j NFQUEUE && iptables -I FORWARD -i eth5 -j NFQUEUE 
 
 #Start the container
 CMD tail -F /dev/null
