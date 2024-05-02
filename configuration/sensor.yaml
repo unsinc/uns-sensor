@@ -1,28 +1,4 @@
-# Patching the IDS Container to eliminate a network loop
-- name: Stop the old IDS container
-  shell: 
-    cmd: |
-        sudo docker stop IDS
-  ignore_errors: true
 
-- name: Delete the old IDS container
-  shell: 
-    cmd: |
-        sudo docker remove IDS
-  ignore_errors: true
-
-- name: Delete the old Suricata Image
-  shell: 
-    cmd: |
-        sudo docker image rm suricata
-  ignore_errors: true
-
-  name: Clear out old docker system chache
-  shell: 
-    cmd: |
-         sudo docker system prune -a -f
-  ignore_errors: true
-#########################################################
 
 - name: Adding ansible to the Docker group
   shell: "sudo usermod -a -G docker ansible"
