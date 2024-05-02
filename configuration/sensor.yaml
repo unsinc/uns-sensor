@@ -1,5 +1,3 @@
-
-
 - name: Adding ansible to the Docker group
   shell: "sudo usermod -a -G docker ansible"
 
