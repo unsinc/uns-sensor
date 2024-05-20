@@ -80,14 +80,14 @@
     owner: docker
     group: docker
 
-- name: Copy the docker-compose file to the Docker directory
+- name: Copy the suricata log rotate file to the Docker directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/tasks/suricata
     dest: /etc/logrotate.d/suricata
     owner: root
     group: root
     mode: u=rw,g=r,o=r
-    
+
 - name: Copy the docker-compose file to the Docker directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/docker-compose.yml
@@ -180,7 +180,7 @@
     owner: docker
     group: docker
 
-- name: Copy the Suricata Configuration file to the Suricata directory
+- name: Copy the Suricata Log file to the Suricata directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/suricata.yaml
     dest: /sns/IDS/suricata/suricata.yaml 
