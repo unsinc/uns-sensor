@@ -90,3 +90,7 @@ sudo docker exec IDS /bin/bash -c "systemctl enable suricata"
 # Start suricata
 
 sudo docker exec IDS /bin/bash -c "service suricata start"
+
+# Createa. Buildstamp file
+
+sudo echo UNS_Sensor-v1.1.0-05312024 > /etc/buildstamp
