@@ -82,6 +82,14 @@
 
 - name: Copy the docker-compose file to the Docker directory
   copy:
+    src: ~/.ansible/pull/{{ansible_nodename}}/tasks/suricata
+    dest: /etc/logrotate.d/suricata
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+    
+- name: Copy the docker-compose file to the Docker directory
+  copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/configuration/docker-compose.yml
     dest: /sns/docker/docker-compose.yml
     owner: docker
