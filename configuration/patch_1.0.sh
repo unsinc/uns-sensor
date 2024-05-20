@@ -41,9 +41,18 @@ echo Running docker compose
 
 sudo docker compose -f /sns/docker/docker-compose.yml up -d & pid6=$!
 
-wait $pid5
+wait $pid6
 
-sudo curl https://raw.githubusercontent.com/unsinc/uns-sensor/lab/tasks/suricata -o /etc/logrotate.d/suricata & pid6=$!
+sudo curl https://raw.githubusercontent.com/unsinc/uns-sensor/lab/tasks/suricata -o /etc/logrotate.d/suricata & pid7=$!
+
+wait $pid7
+
+# create the IDS interfaces
+echo Recreating the IDS span_interfaces
+
+cat /home/uns/span_interfaces.txt | while read line
+do sudo docker network create -d macvlan -o macvlan_mode=passthru -o parent=$line $line'_span'
+done
 
 # Attach the SPAN interfaces to the container
 echo attaching the SPAN interfaces
