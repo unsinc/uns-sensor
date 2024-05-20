@@ -4,6 +4,7 @@
     daily
     missingok
     compress
+    delaycompress
     create
     sharedscripts
     postrotate
