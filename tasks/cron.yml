@@ -45,11 +45,11 @@
 
 - name: Migrate the suricata rules to the suricata directory
   cron:
-    user: docker
+    user: root
     name: "Moving the Suricata Rules to the suricata directory"
     minute: "30"
     hour: "12"
-    job: "cp /var/lib/suricata/rules/ /sns/IDS/suricata/ >/dev/null 2>&1 | logger -t Suricata Updating the IDS Rules"
+    job: "cp -r /var/lib/suricata/rules/ /sns/IDS/suricata/ >/dev/null 2>&1 | logger -t Suricata Updating the IDS Rules"
 
 - name: Restart the Suricata Service to apply the new rules
   cron: 
