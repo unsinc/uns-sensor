@@ -69,42 +69,42 @@
 # Uncomment the section below in IDS Multi-Tenency
 #- name: update the eth1 suricata rules
 #  cron:
-#    user: docker
+#    user: root
 #    name: "eth1 Suricata Rules Update"
 #    minute: "30"
 #    hour: "12"
-#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth1/ 2>&1 | logger -t Suricata Updating the eth1 Rules"
+#    job: "cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth1/ 2>&1 | logger -t Suricata Updating the eth1 Rules"
 #
 #- name: update the eth2 suricata rules
 #  cron:
-#    user: docker
+#    user: root
 #    name: "eth2 Suricata Rules Update"
 #    minute: "30"
 #    hour: "12"
-#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth2/ 2>&1 | logger -t Suricata Updating the eth2 Rules"
+#    job: "cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth2/ 2>&1 | logger -t Suricata Updating the eth2 Rules"
 #
 #- name: update the eth3 suricata rules
 #  cron:
-#    user: docker
+#    user: root
 #    name: "eth3 Suricata Rules Update"
 #    minute: "30"
 #    hour: "12"
-#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth3/ 2>&1 | logger -t Suricata Updating the eth3 Rules"
+#    job: "cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth3/ 2>&1 | logger -t Suricata Updating the eth3 Rules"
 #
 #- name: update the eth4 suricata rules
 #  cron:
-#    user: docker
+#    user: root
 #    name: "eth4 Suricata Rules Update"
 #    minute: "30"
 #    hour: "12"
-#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth4/ 2>&1 | logger -t Suricata Updating the eth4 Rules"
+#    job: "cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth4/ 2>&1 | logger -t Suricata Updating the eth4 Rules"
 #
 #- name: update the eth5 suricata rules
 #  cron:
-#    user: docker
+#    user: root
 #    name: "eth5 Suricata Rules Update"
 #    minurte: "30"
 #    hour: "12"
-#    job: "cp /var/lib/suricata/rules/ /Docker/IDS/suricata/eth5/ 2>&1 | logger -t Suricata Updating the eth5 Rules"
+#    job: "cp -r /var/lib/suricata/rules/ /Docker/IDS/suricata/eth5/ 2>&1 | logger -t Suricata Updating the eth5 Rules"
 #
 ######################################################
