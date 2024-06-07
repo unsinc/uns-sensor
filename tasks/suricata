@@ -1,6 +1,6 @@
 /var/log/suricata/*.log /var/log/suricata/*.json 
 {
-    rotate 7
+    rotate 3
     daily
     missingok
     compress
