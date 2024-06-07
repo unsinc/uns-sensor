@@ -36,6 +36,7 @@
       - docker-compose-plugin
       - python3-pip
       - lm-sensors
+      - iftop
     
 - name: Create a logical volume sns with the rest of the available space
   lvol:
