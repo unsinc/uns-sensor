@@ -324,3 +324,7 @@
 - name: Start Suricata
   shell: 
     cmd: sudo docker exec IDS /bin/bash -c "service suricata start"
+
+- name: Create a Buildstamp File
+  shell: 
+    cmd: sudo echo UNS_Sensor-v1.1.0-05312024 > /etc/buildstamp
