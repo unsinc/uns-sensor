@@ -10,14 +10,14 @@ sudo docker remove IDS & pid1=$!
 
 wait $pid1
 
-# remove the old suricata container image
+# Remove the old suricata container image
 echo Removing the old IDS image
 
 sudo docker image rm suricata & pid2=$!
 
 wait $pid2
 
-# clear the old docker system chache
+# Clear the old docker system chache
 
 echo Clearing the old docker cache
 
@@ -25,7 +25,7 @@ sudo docker system prune -a -f & pid3=$!
 
 wait $pid3
 
-# dowload the updated docker compose file
+# Download the updated docker compose file
 echo Downloading the new docker-compose file and dockerfile
 
 sudo curl https://raw.githubusercontent.com/unsinc/uns-sensor/lab/configuration/docker-compose.yml -o /sns/docker/docker-compose.yml & pid4=$!
@@ -36,7 +36,7 @@ sudo curl https://raw.githubusercontent.com/unsinc/uns-sensor/lab/configuration/
 
 wait $pid5
 
-# create the new IDS container
+# Create the new IDS container
 echo Running docker compose
 
 sudo docker compose -f /sns/docker/docker-compose.yml up -d & pid6=$!
@@ -47,7 +47,7 @@ sudo curl https://raw.githubusercontent.com/unsinc/uns-sensor/lab/tasks/suricata
 
 wait $pid7
 
-# create the IDS interfaces
+# Create the IDS interfaces
 echo Recreating the IDS span_interfaces
 
 cat /home/uns/span_interfaces.txt | while read line
