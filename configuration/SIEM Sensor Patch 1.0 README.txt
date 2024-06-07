@@ -2,7 +2,7 @@
 # 
 # README for patch_1.0 SIEM Sensors
 # Author: Jason Rybicki 
-# Date: 6-7-24
+# Date: 6-7-2024
 #
 #################################################################
 
@@ -12,13 +12,13 @@
 
 3. In another terminal Run the command "sudo curl https://raw.githubusercontent.com/unsinc/uns-sensor/lab/configuration/patch_1.0.sh -o /sns/IDS/patch_1.0.sh"
 
-4. Now Run the command "cd /sns/IDS/"
+4. Now run the command "cd /sns/IDS/"
 
-5. Now Run the command "sudo chmod 0755 patch_1.0.sh"
+5. Now run the command "sudo chmod 0755 patch_1.0.sh"
 
-6. Now Run the command "sudo ./patch_1.0.sh"
+6. Now run the command "sudo ./patch_1.0.sh"
 
-7. Now Run the command "sudo cat /etc/buildstamp"to check that the buildstamp file hs been created and states the version
+7. Now run the command "sudo cat /etc/buildstamp"to check that the buildstamp file hs been created and states the version
 
 8. Validate that the pings are no longer being seen out of the main sensor interface  
 
@@ -49,4 +49,4 @@
 
 13. Stop the continuous ping on the other system
 
-14.  Monitor the network to ensure no other issues are seen after the patch
+14. Monitor the network to ensure no other issues are seen after the patch
