@@ -77,8 +77,8 @@
   file:
     path: /var/log/suricata 
     state: directory
-    owner: docker
-    group: docker
+    owner: root
+    group: adm
 
 - name: Copy the suricata log rotate file to the Docker directory
   copy:
