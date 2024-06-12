@@ -5,52 +5,6 @@
     minute: "10"
     job: "sudo ansible-pull -o -U https://github.com/unsinc/uns-sensor.git >/dev/null 2>&1 | logger -t Sensor Configuration Validation"
 
-- name: Start Sricata
-  cron: 
-    user: docker
-    name: Starting Suricata
-    special_time: reboot
-    job: "sleep 120 && docker exec IDS /bin/bash -c 'service suricata start' >/dev/null 2>&1 | logger -t Starting Suricata"
-    state: absent
-
-- name: Start Sricata
-  cron: 
-    user: docker
-    name: Starting Suricata
-    special_time: reboot
-    job: "sleep 120 && docker exec IDS /bin/bash -c 'service suricata start' >/dev/null 2>&1 | logger -t Sensor Starting Suricata"
-
-- name: Update the Surcata Rule Sources
-  cron:
-    user: ansible
-    name: "Suricata Rule Update"
-    hour: "12"
-    job: "sudo suricata-update --suricata-version 7.0.3 update-sources >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update"
-    state: absent
-
-- name: Update the Surcata Rule Sources
-  cron:
-    user: ansible
-    name: "Suricata Rule Sources Update"
-    hour: "12"
-    job: "sudo suricata-update --suricata-version 7.0.3 update-sources >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rule Sources Update"
-
-- name: Update the Suricata Rules
-  cron:
-    user: ansible
-    name: "Suricata Rule Update"
-    minute: "5"
-    hour: "12"
-    job: "sudo suricata-update --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update"
-
-- name: Migrate the suricata rules to the suricata directory
-  cron:
-    user: root
-    name: "Moving the Suricata Rules to the suricata directory"
-    minute: "30"
-    hour: "12"
-    job: "cp -r /var/lib/suricata/rules/ /sns/IDS/suricata/ >/dev/null 2>&1 | logger -t Suricata Updating the IDS Rules"
-
 - name: Restart the Suricata Service to apply the new rules
   cron: 
     user: docker
@@ -59,7 +13,37 @@
     hour: "12"
     job: "docker exec IDS /bin/bash -c 'service suricata restart' >/dev/null 2>&1 | logger -t Suricata Applying the most recent IDS Rules"
 
-- name: Check that Sricata is running
+- name: Start Suricata
+  cron: 
+    user: docker
+    name: Starting Suricata
+    special_time: reboot
+    job: "sleep 120 && docker exec IDS /bin/bash -c 'service suricata start' >/dev/null 2>&1 | logger -t Sensor Starting Suricata"
+
+- name: Update the Surcata Rule Sources
+  cron:
+    user: root
+    name: "Suricata Rule Sources Update"
+    hour: "12"
+    job: "sudo suricata-update --suricata-version 7.0.3 update-sources >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rule Sources Update"
+
+- name: Update the Suricata Rules
+  cron:
+    user: root
+    name: "Suricata Rule Update"
+    minute: "5"
+    hour: "12"
+    job: "sudo suricata-update --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update"
+
+- name: Migrate the Suricata Rules to the Suricata directory
+  cron:
+    user: root
+    name: "Moving the Suricata Rules to the suricata directory"
+    minute: "30"
+    hour: "12"
+    job: "cp -r /var/lib/suricata/rules/ /sns/IDS/suricata/ >/dev/null 2>&1 | logger -t Suricata Updating the IDS Rules"
+
+- name: Check that Suricata is running
   cron: 
     user: root
     name: Checking that Suricata is running
