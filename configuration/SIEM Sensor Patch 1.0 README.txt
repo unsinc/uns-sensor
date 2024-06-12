@@ -6,27 +6,27 @@
 #
 #################################################################
 
-1. Start a ping on another system on the network to 1.1.1.1 or another address that is not used by other systems on the network but that does respond to ping
+1.  Start a ping on another system on the network to 1.1.1.1 or another address that is not used by other systems on the network but that does respond to ping
 
-2. Run a tcpdump on the main interface of the sensor to see if you are seeing the pings comming from that interface (you should be without the patch)
+2.  Run a tcpdump on the main interface of the sensor to see if you are seeing the pings comming from that interface (you should be without the patch)
 
-3. In another terminal Run the command "sudo curl https://raw.githubusercontent.com/unsinc/uns-sensor/lab/configuration/patch_1.0.sh -o /sns/IDS/patch_1.0.sh"
+3.  In another terminal Run the command "sudo curl https://raw.githubusercontent.com/unsinc/uns-sensor/lab/configuration/patch_1.0.sh -o /sns/IDS/patch_1.0.sh"
 
-4. Now run the command "cd /sns/IDS/"
+4.  Now run the command "cd /sns/IDS/"
 
-5. Now run the command "sudo chmod 0755 patch_1.0.sh"
+5.  Now run the command "sudo chmod 0755 patch_1.0.sh"
 
-6. Now run the command "sudo ./patch_1.0.sh"
+6.  Now run the command "sudo ./patch_1.0.sh"
 
-7. Now run the command "sudo cat /etc/buildstamp"to check that the buildstamp file hs been created and states the version
+7.  Now run the command "sudo cat /etc/buildstamp"to check that the buildstamp file hs been created and states the version
 
-8. Validate that the pings are no longer being seen out of the main sensor interface  
+8.  Validate that the pings are no longer being seen out of the main sensor interface  
 
-9. Now run the command "sudo chmod 750 -R /var/log/suricata/"
+9.  Now run the command "sudo chmod 750 -R /var/log/suricata/"
 
-10 Now rune the command "sudo chown root:adm -R  /var/log/suricata/"
+10  Now rune the command "sudo chown root:adm -R  /var/log/suricata/"
 
-11. Delete the old lof and jason files found in /var/log/suricata/
+11. Delete the old files found in /var/log/suricata/
 
 12. Restart Suricata
 
