@@ -17,6 +17,7 @@
   - docker-compose-plugin
   - python3-pip
   - lm-sensors
+  - iftop
 
 1.  This will use PIP to install suricata-update on the host
 1.  This will create a new partition called sns that will be used for docker and the agent
