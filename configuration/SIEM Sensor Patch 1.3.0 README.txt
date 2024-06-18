@@ -27,11 +27,11 @@
 
 09.  Now run the command "sudo chmod 750 -R /var/log/suricata/"
 
-10.  Now run the command "sudo chown root:adm -R  /var/log/suricata/"
+10.  Now run the command "sudo chown root:adm -R /var/log/suricata/"
 
 11.  Now run the command "sudo mkdir /sns/IDS/suricata/logs/"
 
-12.  Now run the command "sudo chown root:adm -R  /sns/IDS/suricata/logs/" 
+12.  Now run the command "sudo chown root:adm -R /sns/IDS/suricata/logs/" 
 
 13.  Delete the old files found in /var/log/suricata/
 
