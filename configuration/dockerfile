@@ -20,4 +20,3 @@ RUN apt update && apt install -y suricata
 
 # Add the iptables rules for suricata and start and keep running.
 CMD iptables -I FORWARD -i eth1 -j NFQUEUE && iptables -I FORWARD -i eth2 -j NFQUEUE && iptables -I FORWARD -i eth3 -j NFQUEUE && iptables -I FORWARD -i eth4 -j NFQUEUE && iptables -I FORWARD -i eth5 -j NFQUEUE && tail -F /dev/null
-
