@@ -50,6 +50,17 @@
     minute: "*/10"
     job: "sudo bash /sns/IDS/suricata/suricata_check.sh >/dev/null 2>&1 | logger -t Suricata Checking if service is running"
 
+######### Remove Old Bad Cron Jobs #########
+
+- name: Migrate the suricata rules to the suricata directory
+  cron:
+    user: docker
+    name: "Moving the Suricata Rules to the suricata directory"
+    minute: "30"
+    hour: "12"
+    job: "cp /var/lib/suricata/rules/ /sns/IDS/suricata/ >/dev/null 2>&1 | logger -t Suricata Updating the IDS Rules"
+    state: absent
+
 # Uncomment the section below in IDS Multi-Tenency
 #- name: update the eth1 suricata rules
 #  cron:
