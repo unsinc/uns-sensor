@@ -78,6 +78,7 @@
     job: "sudo suricata-update --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update"
     state: absent
 
+
 # Uncomment the section below in IDS Multi-Tenency
 #- name: update the eth1 suricata rules
 #  cron:
