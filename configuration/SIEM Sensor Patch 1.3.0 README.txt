@@ -40,9 +40,9 @@
 	#Ansible: Moving the Suricata Rules to the suricata directory
 	30 12 * * * cp -r /var/lib/suricata/rules/ /sns/IDS/suricata/ >/dev/null 2>&1 | logger -t Suricata Updating the IDS Rules
     #Ansible: Suricata Rule Sources Update
-	* 12 * * * sudo suricata-update --suricata-version 7.0.3 update-sources >> /sns/IDS/suricata/logs/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rule Sources Update
+	* 12 * * * sudo suricata-update --suricata-version 7.0.3 update-sources >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rule Sources Update
 	#Ansible: Suricata Rule Update
-	5 12 * * * sudo suricata-update --suricata-version 7.0.3 >> /sns/IDS/suricata/logs/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update
+	5 12 * * * sudo suricata-update --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update
 
 14. Ensure that crontab has the following for ansible
 
