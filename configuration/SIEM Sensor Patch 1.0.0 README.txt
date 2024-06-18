@@ -1,9 +1,12 @@
 #################################################################
-# 
-# README for patch_1.0 SIEM Sensors
-# Author: Jason Rybicki 
-# Date: 6-7-2024
-#
+## 
+## README for patch_1.0 SIEM Sensors
+##
+## USE PATCH 1.3.0 Instead!
+##
+## Author: Jason Rybicki 
+## Date: 6-7-2024
+##
 #################################################################
 
 1.  Start a ping on another system on the network to 1.1.1.1 or another address that is not used by other systems on the network but that does respond to ping
