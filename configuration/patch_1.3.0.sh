@@ -61,8 +61,6 @@ cat /home/uns/span_interfaces.txt | while read line
 do sudo docker network connect $line'_span' IDS
 done
 
-echo adding the iptables rules to the new container
-
 # Enable suricata
 
 sudo docker exec IDS /bin/bash -c "systemctl enable suricata"

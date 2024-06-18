@@ -1,0 +1,65 @@
+#######################################################################
+## 
+## README for patch_1.0 SIEM Sensors
+##
+## This is the latest patch and will replace the patches 1.0.0 - 1.2.5
+##
+## Author: Jason Rybicki 
+## Date: 6-14-2024
+##
+#######################################################################
+
+01.  Start a ping on another system on the network to 1.1.1.1 or another address that is not used by other systems on the network but that does respond to ping
+
+02.  Run a tcpdump on the main interface of the sensor to see if you are seeing the pings comming from that interface (you should be without the patch)
+
+03.  In another terminal Run the command "sudo curl https://raw.githubusercontent.com/unsinc/uns-sensor/lab/configuration/patch_1.3.0.sh -o /sns/IDS/patch_1.3.0.sh"
+
+04.  Now run the command "cd /sns/IDS/"
+
+05.  Now run the command "sudo chmod 0755 patch_1.3.0.sh"
+
+06.  Now run the command "sudo ./patch_1.3.0.sh"
+
+07.  Now run the command "sudo cat /etc/buildstamp"to check that the buildstamp file hs been created and states the version
+
+08.  Validate that the pings are no longer being seen out of the main sensor interface  
+
+09.  Now run the command "sudo chmod 750 -R /var/log/suricata/"
+
+10.  Now run the command "sudo chown root:adm -R  /var/log/suricata/"
+
+11.  Now run the command "sudo mkdir /sns/IDS/suricata/logs/"
+
+12.  Now run the command "sudo chown root:adm -R  /sns/IDS/suricata/logs/" 
+
+11.  Delete the old files found in /var/log/suricata/
+
+14.  Restart Suricata
+
+15.  Ensure that crontab has the follwoing for root
+
+	#Ansible: Checking that Suricata is running
+	*/10 * * * * sudo bash /sns/IDS/suricata/suricata_check.sh >/dev/null 2>&1 | logger -t Suricata Checking if service is running
+	#Ansible: Moving the Suricata Rules to the suricata directory
+	30 12 * * * cp -r /var/lib/suricata/rules/ /sns/IDS/suricata/ >/dev/null 2>&1 | logger -t Suricata Updating the IDS Rules
+    #Ansible: Suricata Rule Sources Update
+	* 12 * * * sudo suricata-update --suricata-version 7.0.3 update-sources >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rule Sources Update
+	#Ansible: Suricata Rule Update
+	5 12 * * * sudo suricata-update --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update
+
+16. Ensure that crontab has the following for ansible
+
+	#Ansible: Sensor Configuration
+	10 * * * * sudo ansible-pull -o -U https://github.com/unsinc/uns-sensor.git >/dev/null 2>&1 | logger -t Sensor Configuration Validation
+
+17. Ensure crontab has the following for docker
+
+	#Ansible: Starting Suricata
+	45 12 * * * docker exec IDS /bin/bash -c 'service suricata restart' >/dev/null 2>&1 | logger -t Suricata Applying the most recent IDS Rules
+	#Ansible: Suricata Restart
+	@reboot sleep 5 && docker exec IDS /bin/bash -c 'service suricata start' && docker exec IDS /bin/bash -c 'iptables-restore < /etc/iptables.conf' >/dev/null 2>&1 | logger -t Sensor Starting Suricata
+
+18. Stop the continuous ping on the other system
+
+19. Monitor the network to ensure no other issues are seen after the patch
