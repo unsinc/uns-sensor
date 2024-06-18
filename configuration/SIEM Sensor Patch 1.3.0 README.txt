@@ -29,15 +29,11 @@
 
 10.  Now run the command "sudo chown root:adm -R /var/log/suricata/"
 
-11.  Now run the command "sudo mkdir /sns/IDS/suricata/logs/"
+11.  Delete the old files found in /var/log/suricata/
 
-12.  Now run the command "sudo chown root:adm -R /sns/IDS/suricata/logs/" 
+12.  Restart Suricata
 
-13.  Delete the old files found in /var/log/suricata/
-
-14.  Restart Suricata
-
-15.  Ensure that crontab has the follwoing for root
+13.  Ensure that crontab has the follwoing for root
 
 	#Ansible: Checking that Suricata is running
 	*/10 * * * * sudo bash /sns/IDS/suricata/suricata_check.sh >/dev/null 2>&1 | logger -t Suricata Checking if service is running
@@ -48,18 +44,18 @@
 	#Ansible: Suricata Rule Update
 	5 12 * * * sudo suricata-update --suricata-version 7.0.3 >> /sns/IDS/suricata/logs/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update
 
-16. Ensure that crontab has the following for ansible
+14. Ensure that crontab has the following for ansible
 
 	#Ansible: Sensor Configuration
 	10 * * * * sudo ansible-pull -o -U https://github.com/unsinc/uns-sensor.git >/dev/null 2>&1 | logger -t Sensor Configuration Validation
 
-17. Ensure crontab has the following for docker
+15. Ensure crontab has the following for docker
 
 	#Ansible: Starting Suricata
 	45 12 * * * docker exec IDS /bin/bash -c 'service suricata restart' >/dev/null 2>&1 | logger -t Suricata Applying the most recent IDS Rules
 	#Ansible: Suricata Restart
 	@reboot sleep 120 && docker exec IDS /bin/bash -c 'service suricata start' >/dev/null 2>&1 | logger -t Sensor Starting Suricata
 
-18. Stop the continuous ping on the other system
+16. Stop the continuous ping on the other system
 
-19. Monitor the network to ensure no other issues are seen after the patch
+17. Monitor the network to ensure no other issues are seen after the patch
