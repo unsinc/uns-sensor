@@ -33,7 +33,7 @@
 
 12.  Now run the command "sudo chown root:adm -R  /sns/IDS/suricata/logs/" 
 
-11.  Delete the old files found in /var/log/suricata/
+13.  Delete the old files found in /var/log/suricata/
 
 14.  Restart Suricata
 
@@ -44,9 +44,9 @@
 	#Ansible: Moving the Suricata Rules to the suricata directory
 	30 12 * * * cp -r /var/lib/suricata/rules/ /sns/IDS/suricata/ >/dev/null 2>&1 | logger -t Suricata Updating the IDS Rules
     #Ansible: Suricata Rule Sources Update
-	* 12 * * * sudo suricata-update --suricata-version 7.0.3 update-sources >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rule Sources Update
+	* 12 * * * sudo suricata-update --suricata-version 7.0.3 update-sources >> /sns/IDS/suricata/logs/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rule Sources Update
 	#Ansible: Suricata Rule Update
-	5 12 * * * sudo suricata-update --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update
+	5 12 * * * sudo suricata-update --suricata-version 7.0.3 >> /sns/IDS/suricata/logs/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update
 
 16. Ensure that crontab has the following for ansible
 
@@ -58,7 +58,7 @@
 	#Ansible: Starting Suricata
 	45 12 * * * docker exec IDS /bin/bash -c 'service suricata restart' >/dev/null 2>&1 | logger -t Suricata Applying the most recent IDS Rules
 	#Ansible: Suricata Restart
-	@reboot sleep 5 && docker exec IDS /bin/bash -c 'service suricata start' && docker exec IDS /bin/bash -c 'iptables-restore < /etc/iptables.conf' >/dev/null 2>&1 | logger -t Sensor Starting Suricata
+	@reboot sleep 120 && docker exec IDS /bin/bash -c 'service suricata start' >/dev/null 2>&1 | logger -t Sensor Starting Suricata
 
 18. Stop the continuous ping on the other system
 

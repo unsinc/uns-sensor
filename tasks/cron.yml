@@ -25,7 +25,7 @@
     user: root
     name: "Suricata Rule Sources Update"
     hour: "12"
-    job: "sudo suricata-update --suricata-version 7.0.3 update-sources >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rule Sources Update"
+    job: "sudo suricata-update --suricata-version 7.0.3 update-sources >> /sns/IDS/suricata/logs/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rule Sources Update"
 
 - name: Update the Suricata Rules
   cron:
@@ -33,7 +33,7 @@
     name: "Suricata Rule Update"
     minute: "5"
     hour: "12"
-    job: "sudo suricata-update --suricata-version 7.0.3 >> /var/log/suricata/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update"
+    job: "sudo suricata-update --suricata-version 7.0.3 >> /sns/IDS/suricata/logs/suricata_update.log >/dev/null 2>&1 | logger -t Suricata Rules Update"
 
 - name: Migrate the Suricata Rules to the Suricata directory
   cron:

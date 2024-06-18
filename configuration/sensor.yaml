@@ -81,6 +81,14 @@
     group: adm
     mode: u=rwx,g=rx
 
+- name: Create Suricata Log directory if it does not exist
+  file:
+    path: /sns/IDS/suricata/logs 
+    state: directory
+    owner: root
+    group: adm
+    mode: u=rwx,g=rx
+
 - name: Copy the suricata log rotate file to the Docker directory
   copy:
     src: ~/.ansible/pull/{{ansible_nodename}}/tasks/suricata
